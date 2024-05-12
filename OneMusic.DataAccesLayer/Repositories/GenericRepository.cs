@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccesLayer.Repositories
 {
-    public class GenericRepository<T> : IGenericDal<T> where T : class.
+    public class GenericRepository<T> : IGenericDal<T> where T : class
     {
         private readonly OneMusicContext _context;
+
+       
 
         public GenericRepository(OneMusicContext context)
         {
@@ -19,27 +21,33 @@ namespace OneMusic.DataAccesLayer.Repositories
 
         public void Create(T entity)
         {
-            throw new NotImplementedException();
+            _context.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            var value = _context.Set<T>().Find(id);
+            _context.Set<T>().Remove(value);
+            _context.SaveChanges();
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Set<T>().Find(id);    
         }
 
         public List<T> GetList()
         {
-            throw new NotImplementedException();
+            // buradaki T , Entitiylerimize karsilik geliyor
+            return _context.Set<T>().ToList();
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _context.Update(entity);
+            _context.SaveChanges();
+
         }
     }
 }

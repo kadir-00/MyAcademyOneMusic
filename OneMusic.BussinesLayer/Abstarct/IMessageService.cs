@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OneMusic.DataAccesLayer.Abstarct
+namespace OneMusic.BussinesLayer.Abstarct
 {
-    public interface IAboutDal:IGenericDal<About>
+    public interface IMessageService:IGenericService<Message>
     {
     }
 }

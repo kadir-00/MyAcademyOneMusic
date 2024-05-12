@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OneMusic.DataAccesLayer.Abstarct
+namespace OneMusic.BussinesLayer.Abstarct
 {
-    internal interface IGenericDal<T> where T : class
+    public interface IGenericService<T> where T : class
     {
         // CRUD Islemlerini yapacagimiz sayfa 
         List<T> TGetList();
 
         T TGetById(int id);
+
         void TCreate(T entity);
 
         void TUpdate(T entity);
