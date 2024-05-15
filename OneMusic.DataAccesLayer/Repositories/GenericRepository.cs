@@ -25,7 +25,14 @@ namespace OneMusic.DataAccesLayer.Repositories
             _context.SaveChanges();
         }
 
-        public void Delete(T entity)
+        //public void Delete(T entity)
+        //{
+        //    var value = _context.Set<T>().Find(id);
+        //    _context.Set<T>().Remove(value);
+        //    _context.SaveChanges();
+        //}
+
+        public void Delete(int id)
         {
             var value = _context.Set<T>().Find(id);
             _context.Set<T>().Remove(value);
@@ -42,6 +49,31 @@ namespace OneMusic.DataAccesLayer.Repositories
             // buradaki T , Entitiylerimize karsilik geliyor
             return _context.Set<T>().ToList();
         }
+
+        //public void TCreate(T entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void TDelete(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public T TGetById(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public List<T> TGetList()
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void TUpdate(T entity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public void Update(T entity)
         {

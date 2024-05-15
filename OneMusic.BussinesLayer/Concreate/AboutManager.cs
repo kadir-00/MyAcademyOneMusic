@@ -35,7 +35,7 @@ namespace OneMusic.BussinesLayer.Concreate
 
         public List<About> TGetList()
         {
-            return _aboutDal.getlist();
+            return _aboutDal.GetList();
         }
 
         public void TUpdate(About entity)

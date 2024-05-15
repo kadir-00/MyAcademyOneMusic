@@ -25,27 +25,28 @@ namespace OneMusic.BussinesLayer.Concreate
         {
             _albumDal.Create(entity);
         }
-    }
 
         public void TDelete(int id)
         {
-        _albumDal.Delete(id);
-    }
+            _albumDal.Delete(id);
+        }
 
         public Album TGetById(int id)
         {
-            return _albumdal..GetById(id);
-    
+            return _albumDal.GetById(id);
         }
 
         public List<Album> TGetList()
         {
-      return _albumDal.getlist();
-    }
+            return _albumDal.GetList();
+        }
 
         public void TUpdate(Album entity)
         {
-        _albumDal.Update(entity);
+            _albumDal.Update(entity);
+        }
     }
-    }
+
+        
 }
+
