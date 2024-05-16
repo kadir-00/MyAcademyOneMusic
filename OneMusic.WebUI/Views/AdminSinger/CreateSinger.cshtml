@@ -1,0 +1,22 @@
+﻿@model Singer
+@{
+    ViewData["Title"] = "CreateSinger";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h1>CreateSinger Page</h1>
+
+<form method="post">
+    <label>Resim URL</label>
+<input type="text" class="form-control" asp-for="ImageUrl"  />
+<span class="text-danger" asp-validation-for="ImageUrl"></span>
+<br />
+
+    <label>Singer Name</label>
+    <input type="text" class="form-control" asp-for="Name" />
+    <span class="text-danger" asp-validation-for="Name"></span>
+    <br />
+    <br />
+
+    <button class="btn btn-outline-primary"> KAYDET </button>
+</form>
