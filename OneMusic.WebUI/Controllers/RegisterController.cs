@@ -42,6 +42,7 @@ namespace OneMusic.WebUI.Controllers
 				var result = await _userManager.CreateAsync(user, model.Password);
 				if (result.Succeeded) // eger sonuc basarili olursa  
 				{
+                    await _userManager.AddToRoleAsync(user, "Visiter");
 					return RedirectToAction("Index", "Login");
 				}
                 foreach (var item in result.Errors) // yandaki foreach'i resolts.errors.foreach yaparak getirdik

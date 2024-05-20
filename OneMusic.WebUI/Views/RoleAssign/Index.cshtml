@@ -1,0 +1,35 @@
+﻿@model List<AppUser>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<h1>Kullanicilar Index</h1>
+
+<table class="table table-bordered table-hover">
+
+    <tr>
+        <th>#</th>
+        <th>Kullanici Adi </th>
+        <th>Rol Ata </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+
+            <th> @count </th>
+            <td> @item.Name @item.SurName </td>
+            <td>
+                <a href="/RoleAssign/AssignRole/@item.Id" class="btn btn-outline-danger"> Rol Ata </a>
+               
+            </td>
+
+
+        </tr>
+    }
+
+</table>
