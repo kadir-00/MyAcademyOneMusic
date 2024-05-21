@@ -43,4 +43,9 @@
     <ProjectReference Include="..\OneMusic.BussinesLayer\OneMusic.BussinesLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Artist\Data\" />
+    <Folder Include="Areas\Artist\Models\" />
+  </ItemGroup>
+
 </Project>

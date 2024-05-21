@@ -10,5 +10,7 @@ namespace OneMusic.DataAccesLayer.Abstarct
     public interface IAlbumDal : IGenericDal<Album> 
     {
         List<Album> GetAlbumsWithSinger();
+
+        List<Album> GetAlbumsByArtist(int id);
     }
 }

@@ -10,5 +10,7 @@ namespace OneMusic.BussinesLayer.Abstarct
     public interface IAlbumService:IGenericService<Album>
     {
         List<Album> TGetAlbumsWithSinger();
+
+        List<Album> TGetAlbumsByArtist(int id);
     }
 }

@@ -1,4 +1,5 @@
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Options;
 using OneMusic.BussinesLayer.Abstarct;
@@ -35,12 +36,18 @@ builder.Services.AddDbContext<OneMusicContext>();
 
 builder.Services.AddControllersWithViews(option =>
 { // sadece Yetkili Kisiler Admin Tarafina Erisebilecek Oni Yapacaz
-    option.Filters.Add(new AuthorizeFilter());
+
+    var authorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+
+    option.Filters.Add(new AuthorizeFilter(authorizePolicy));
 });
 
 builder.Services.ConfigureApplicationCookie(Options =>
 {
     Options.LoginPath = "/Login/Index";
+    Options.AccessDeniedPath = "/ErrorPage/AccessDenied";
+    Options.LogoutPath = "/LogIn/Logout";
 
 });
 
@@ -54,15 +61,26 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404","?code{0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
+
 
 app.Run();
