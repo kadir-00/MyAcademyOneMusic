@@ -1,0 +1,43 @@
+﻿@model ArtistEditViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Artist/Views/ArtistLayout/Index.cshtml";
+}
+
+<h1>Profil Bilgileri Guncelleme Sayfasi Index</h1>
+
+<form method="post" enctype="multipart/form-data">  @* // multipart/form-data dosya secebilmek icin ekledik *@
+    <label>Name</label>
+    <input type="text" asp-for="Name" class="form-control" required />
+
+    <label>SurName</label>
+    <input type="text" asp-for="Surname" class="form-control" required />
+
+    <label>UserName</label>
+    <input type="text" asp-for="Username" class="form-control" required  />
+
+    <label>Email</label>
+    <input type="email" asp-for="Mail" class="form-control" required />
+
+    <label>Phone Number</label>
+    <input type="text" asp-for="PhoneNumber" class="form-control" />
+
+    <label>Image</label>
+    <input type="file" asp-for="ImageFile" class="form-control" required />
+
+    <label> Mevcut Siferniz </label>
+    <input type="password" asp-for="OldPassword" class="form-control" required />
+
+    <label> Yeni Siferniz </label>
+    <input type="password" asp-for="NewPassword" class="form-control" />
+
+    <label> Tekar Yeni Siferniz </label>
+    <input type="password" asp-for="ConfirmPassword" class="form-control" />
+
+    <p style="color:red"> @Html.ValidationSummary() </p> @* hatalari gostermekmek icin *@
+
+    <button class="btn btn-priamry" >  GUNCELLE </button>
+    
+
+</form>
+

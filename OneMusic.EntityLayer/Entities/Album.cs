@@ -13,8 +13,7 @@ namespace OneMusic.EntityLayer.Entities
         public string CoverImage { get; set; }
         public string Price { get; set; }
 
-        public int SingerId { get; set; }
-        public Singer Singer { get; set; }
+        
 
         public int? AppUserId { get; set; }
 

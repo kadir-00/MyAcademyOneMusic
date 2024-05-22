@@ -16,7 +16,7 @@
         <th>#</th>
         <th>Image</th>
         <th>Album Name</th>
-        <th>Singer</th>
+       @*  <th>Singer</th> *@
         <th>Fiyat</th>
         <th>Islemler</th>
     </tr>
@@ -28,12 +28,12 @@
             <th>@count</th>
             <td> <img src="@item.CoverImage" style="height:75px;width:75px" />  </td>
             <td> @item.AlbumName </td>
-            <td> @item.Singer.Name  </td>
+           @*  <td> @item.AppUserId  </td> *@
             <td> @item.Price $  </td>
             <base href="/" />
             <td>
                 @* //  asp-action ve asp-route-id yeni  HREF YERINE KULLANILIYOR *@
-                <button class="btn btn-outline-danger" onclick="deleteAlbum(@item.AlbumId)"> SIL </button>
+                <button class="btn btn-outline-danger" onclick="deleteMyAlbum(@item.AlbumId)"> SIL </button>
                 <a class="btn btn-outline-info" asp-action="UpdateAlbum" asp-route-id="@item.AlbumId"> GUNCELLE </a>
 
             </td>
@@ -46,7 +46,7 @@
 <a class="btn btn-outline-primary" asp-action="CreateAlbum"> Yeni Album Olustur </a>
 
 <script>
-    function deleteAlbum(id) {
+    function deleteMyAlbum(id) {
         Swal.fire({
             title: "Silmek Istedigine Emin misin?",
             text: "Bu Islemi Geri Alamazsin",
@@ -59,7 +59,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
 
-                window.location.href = "/AdminAlbum/DeleteSinger/" + id;
+                window.location.href = "/Artist/MyAlbum/DeleteAlbum" + id;
             }
         });
 

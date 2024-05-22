@@ -36,10 +36,7 @@ namespace OneMusic.BussinesLayer.Concreate
             return _albumDal.GetAlbumsByArtist(id);
         }
 
-        public List<Album> TGetAlbumsWithSinger()
-        {
-           return _albumDal.GetAlbumsWithSinger();
-        }
+        
 
         public Album TGetById(int id)
         {
