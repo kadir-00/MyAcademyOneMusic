@@ -12,5 +12,8 @@ namespace OneMusic.BussinesLayer.Abstarct
         
 
         List<Album> TGetAlbumsByArtist(int id);
+
+        public List<Album> TGetAlbumsWithArtist();
+        string? TGetAlbumsWithArtists();
     }
 }

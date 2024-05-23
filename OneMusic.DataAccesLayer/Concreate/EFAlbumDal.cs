@@ -25,6 +25,9 @@ namespace OneMusic.DataAccesLayer.Concreate
           return _context.Albums.Include(y=>y.AppUser).Where(x=>x.AppUserId == id).ToList();
         }
 
-        
+        public List<Album> GetAlbumsWithArtist()
+        {
+            return _context.Albums.Include(x=>x.AppUser).ToList();
+        }
     }
 }

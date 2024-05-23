@@ -30,6 +30,9 @@ builder.Services.AddScoped<IBannerService, BannerManager>();
 builder.Services.AddScoped<ISingerDal, EFSingerDal>();
 builder.Services.AddScoped<ISingerService, SingerManager>();
 
+builder.Services.AddScoped<IMessageDal, EFMessageDal>();
+builder.Services.AddScoped<IMessageService, MessageManager>();
+
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 builder.Services.AddDbContext<OneMusicContext>();
