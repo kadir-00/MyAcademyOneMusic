@@ -3,12 +3,12 @@ using OneMusic.BussinesLayer.Abstarct;
 
 namespace OneMusic.WebUI.ViewComponents.Default_Index
 {
-    public class _DefaultAlbumComponent(IAlbumService _albumService) : ViewComponent
+    public class _DefaultAlbumComponent(IAlbumService albumService) : ViewComponent
     {
 
         public IViewComponentResult Invoke()
         {
-           var values = _albumService.TGetAlbumsWithArtists();
+            var values = albumService.TGetAlbumsWithArtist();
             return View(values);
 
         }
