@@ -27,6 +27,8 @@ namespace OneMusic.WebUI.Areas.Artist.Controllers
 
             var model = new ArtistEditViewModel
             {
+
+
                 Mail = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 Name = user.Name,
@@ -41,12 +43,20 @@ namespace OneMusic.WebUI.Areas.Artist.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(ArtistEditViewModel model)
         {
+            ModelState.Clear();
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
             if (model.ImageFile != null)
             {
                 var resource = Directory.GetCurrentDirectory(); // Suanki projenin yolunu bul diyoruz 
-                var extansion = Path.GetExtension(model.ImageFile.FileName); // sectigimiz dosyanin uzantisini aldirdik
+                var extansion = Path.GetExtension(model.ImageFile.FileName).ToLower(); // sectigimiz dosyanin uzantisini aldirdik
+                if (extansion != ".jpeg" && extansion != ".jpg" && extansion != ".png")
+                {
+                    // desteklenmeyen dosya uzantisi hatasi 
+                    ModelState.AddModelError("ImageFile", "Sadece JPEG VE YA JPG DOSYALARI");
+                    // GEREKIRSE Islem Sonlandirma 
+                    return View(model);
+                }
                 var imageName = Guid.NewGuid() + extansion;    // dosyanin ismini aliyorruz 
                 var saveLocation = resource + "/wwwroot/images/" + imageName;     //kaydedecegimiz yer
                 var stream = new FileStream(saveLocation, FileMode.Create); // kaydetme islemi

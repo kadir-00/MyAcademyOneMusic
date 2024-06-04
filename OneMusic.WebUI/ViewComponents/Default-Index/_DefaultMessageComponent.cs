@@ -2,7 +2,7 @@
 
 namespace OneMusic.WebUI.ViewComponents.Default_Index
 {
-    public class _DefeaultMessageComponent : ViewComponent
+    public class _DefaultMessageComponent : ViewComponent
     {
         public IViewComponentResult Invoke() 
         { 
