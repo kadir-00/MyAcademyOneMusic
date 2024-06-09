@@ -27,5 +27,7 @@ namespace OneMusic.DataAccesLayer.Context
         public DbSet<Singer> Singers  { get; set; }
         public DbSet<Song> Songs  { get; set; }
 
+        public DbSet<Category> Categories { get; set; }
+
     }
 }

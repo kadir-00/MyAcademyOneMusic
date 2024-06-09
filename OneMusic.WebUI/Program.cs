@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Options;
 using OneMusic.BussinesLayer.Abstarct;
+using OneMusic.BussinesLayer.Abstract;
 using OneMusic.BussinesLayer.Concreate;
 using OneMusic.BussinesLayer.Validater;
 using OneMusic.DataAccesLayer.Abstarct;
+using OneMusic.DataAccesLayer.Abstract;
 using OneMusic.DataAccesLayer.Concreate;
 using OneMusic.DataAccesLayer.Context;
 using OneMusic.EntityLayer.Entities;
@@ -32,6 +34,12 @@ builder.Services.AddScoped<ISingerService, SingerManager>();
 
 builder.Services.AddScoped<IMessageDal, EFMessageDal>();
 builder.Services.AddScoped<IMessageService, MessageManager>();
+
+builder.Services.AddScoped<ISongDal, EFSongDal>();
+builder.Services.AddScoped<ISongService, SongManager>();
+
+builder.Services.AddScoped<ICategoryDal, EFCategoryDal>();
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
 builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

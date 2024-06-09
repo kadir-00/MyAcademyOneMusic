@@ -46,6 +46,7 @@
   <ItemGroup>
     <Folder Include="Areas\Artist\Data\" />
     <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\Songs\" />
   </ItemGroup>
 
 </Project>

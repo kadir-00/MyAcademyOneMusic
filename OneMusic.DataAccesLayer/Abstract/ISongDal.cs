@@ -9,6 +9,10 @@ namespace OneMusic.DataAccesLayer.Abstarct
 {
     public interface ISongDal : IGenericDal<Song>
     {
+        List<Song> GetSongsWithAlbumAndArtist(); // Butun sarkilari getierir
+
+        List<Song> GetSongsWithAlbumByUserId(int id); // Bunuda giris yapan kisiye gore gelecek album ve sarkilar
+
 
     }
 }
