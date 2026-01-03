@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{198F708A-2C92-4741-8BA7-70DE3716ECF0}|OneMusic.DataAccesLayer\\OneMusic.DataAccesLayer.csproj|c:\\users\\kadir\\desktop\\myacademyonemusic\\onemusic.dataacceslayer\\context\\onemusiccontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{198F708A-2C92-4741-8BA7-70DE3716ECF0}|OneMusic.DataAccesLayer\\OneMusic.DataAccesLayer.csproj|solutionrelative:onemusic.dataacceslayer\\context\\onemusiccontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2D5EBE6-68B9-49A0-BCF9-66412736CB9A}|OneMusic.WebUI\\OneMusic.WebUI.csproj|c:\\users\\kadir\\desktop\\myacademyonemusic\\onemusic.webui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2D5EBE6-68B9-49A0-BCF9-66412736CB9A}|OneMusic.WebUI\\OneMusic.WebUI.csproj|solutionrelative:onemusic.webui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2D5EBE6-68B9-49A0-BCF9-66412736CB9A}|OneMusic.WebUI\\OneMusic.WebUI.csproj|c:\\users\\kadir\\desktop\\myacademyonemusic\\onemusic.webui\\views\\default\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D2D5EBE6-68B9-49A0-BCF9-66412736CB9A}|OneMusic.WebUI\\OneMusic.WebUI.csproj|solutionrelative:onemusic.webui\\views\\default\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2D5EBE6-68B9-49A0-BCF9-66412736CB9A}|OneMusic.WebUI\\OneMusic.WebUI.csproj|c:\\users\\kadir\\desktop\\myacademyonemusic\\onemusic.webui\\controllers\\defaultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D2D5EBE6-68B9-49A0-BCF9-66412736CB9A}|OneMusic.WebUI\\OneMusic.WebUI.csproj|solutionrelative:onemusic.webui\\controllers\\defaultcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D2D5EBE6-68B9-49A0-BCF9-66412736CB9A}|OneMusic.WebUI\\OneMusic.WebUI.csproj|c:\\users\\kadir\\desktop\\myacademyonemusic\\onemusic.webui\\areas\\artist\\views\\myalbum\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D2D5EBE6-68B9-49A0-BCF9-66412736CB9A}|OneMusic.WebUI\\OneMusic.WebUI.csproj|solutionrelative:onemusic.webui\\areas\\artist\\views\\myalbum\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OneMusicContext.cs",
+              "DocumentMoniker": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.DataAccesLayer\\Context\\OneMusicContext.cs",
+              "RelativeDocumentMoniker": "OneMusic.DataAccesLayer\\Context\\OneMusicContext.cs",
+              "ToolTip": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.DataAccesLayer\\Context\\OneMusicContext.cs",
+              "RelativeToolTip": "OneMusic.DataAccesLayer\\Context\\OneMusicContext.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAACRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T14:45:15.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.WebUI\\Program.cs",
+              "RelativeDocumentMoniker": "OneMusic.WebUI\\Program.cs",
+              "ToolTip": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.WebUI\\Program.cs",
+              "RelativeToolTip": "OneMusic.WebUI\\Program.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T14:44:27.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.WebUI\\Views\\Default\\Index.cshtml",
+              "RelativeDocumentMoniker": "OneMusic.WebUI\\Views\\Default\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.WebUI\\Views\\Default\\Index.cshtml",
+              "RelativeToolTip": "OneMusic.WebUI\\Views\\Default\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-01-02T14:43:59.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DefaultController.cs",
+              "DocumentMoniker": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.WebUI\\Controllers\\DefaultController.cs",
+              "RelativeDocumentMoniker": "OneMusic.WebUI\\Controllers\\DefaultController.cs",
+              "ToolTip": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.WebUI\\Controllers\\DefaultController.cs",
+              "RelativeToolTip": "OneMusic.WebUI\\Controllers\\DefaultController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-02T14:43:55.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.WebUI\\Areas\\Artist\\Views\\MyAlbum\\Index.cshtml",
+              "RelativeDocumentMoniker": "OneMusic.WebUI\\Areas\\Artist\\Views\\MyAlbum\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Kadir\\Desktop\\MyAcademyOneMusic\\OneMusic.WebUI\\Areas\\Artist\\Views\\MyAlbum\\Index.cshtml",
+              "RelativeToolTip": "OneMusic.WebUI\\Areas\\Artist\\Views\\MyAlbum\\Index.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAIBJwBoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-01-25T15:23:38.432Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
