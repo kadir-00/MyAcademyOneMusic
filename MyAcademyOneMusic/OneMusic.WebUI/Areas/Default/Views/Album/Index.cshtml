@@ -1,0 +1,71 @@
+﻿@using OneMusic.EntityLayer.Entities;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IPagedList<Album>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Default/Views/_DefaultLayout/Index.cshtml";
+}
+
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/one-music-gh-pages/img/bg-img/breadcumb3.jpg);">
+    <div class="bradcumbContent">
+        <h3 class="mt-5">Albümler</h3>
+    </div>
+</section>
+
+<section class="album-catagory section-padding-100-0">
+
+    <div class="container">
+        <form method="post">
+            <div class="row col-12">
+                <div class="form-group col-3">
+                    <select name="artist" class="form-control" asp-items="@ViewBag.Artitst">
+                        <option>Sanatçı Seçin</option>
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <select name="category" class="form-control" asp-items="@ViewBag.Categorys">
+                        <option>Tür Seçin</option>
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <button class="btn btn-outline-success">Ara</button>
+                </div>
+            </div>
+
+        </form>
+        <br />
+
+
+        @if (Model.Count > 0)
+        {
+            <div class="row oneMusic-albums">
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-12 col-sm-4 col-md-3 col-lg-2 single-album-item @item.AlbumName.Substring(0,1).ToLower()">
+                        <div class="single-album">
+                            <img src="@item.CoverImage" alt="">
+                            <div class="album-info">
+                                <a href="/Default/AlbumDetail/Index/@item.AlbumId">
+                                    <h5>@item.AlbumName</h5>
+                                    <h5 style="text-transform:capitalize">@item.AppUser.Name @item.AppUser.Surname</h5>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div style="justify-content:center; align-items:center; display:flex;">
+                @Html.PagedListPager((IPagedList)Model, pageNumber =>  Url.Action("Index", new { area ="Default", pageNumber }), new PagedListRenderOptions { LiElementClasses = new List<string> { "page-link" } })
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-info" style="text-align:center"> <h6 style="text-transform:capitalize">Ooooppps!...<br /> Aradığınız Sonuç Bulunamadı Albümlere <a style="color:#3a74c5; text-decoration:underline" href="/default/album/index">Geri Dönün</a> veya tekrar filtreme işlemi uygulayın</h6> </div>
+        }
+
+    </div>
+</section>
+@await Component.InvokeAsync("_DefaultSingerComponentPartial")

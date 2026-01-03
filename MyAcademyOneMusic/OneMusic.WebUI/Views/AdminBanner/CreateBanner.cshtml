@@ -1,0 +1,31 @@
+﻿@model CreateBannerViewModel
+@{
+    ViewData["Title"] = "CreateBanner";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h3>Yeni Banner Oluşturma Sayfası</h3>
+<br />
+
+<div class="card-body">
+    <form method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Başlık</label>
+            @Html.TextBoxFor(x=>x.Title,new {@class="form-control"})
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Alt Başlık</label>
+            @Html.TextBoxFor(x=>x.SubTitle,new {@class="form-control"})
+            <span asp-validation-for="SubTitle" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Görsel</label>
+          <input type="file" asp-for="coverPhoto" class="form-control" />
+            <span asp-validation-for="coverPhoto" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </form>
+</div>
+
+

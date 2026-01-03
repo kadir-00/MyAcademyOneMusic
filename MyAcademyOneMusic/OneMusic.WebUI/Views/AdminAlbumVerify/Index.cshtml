@@ -1,0 +1,113 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IPagedList<Album>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<h1>Onay Bekliyen Albümler (@Model.Count())</h1>
+<br />
+<a href="/AdminAlbumVerify/Index" class="btn btn-outline-success">Onay Bekliyen Albümler</a>
+<a href="/AdminAlbumVerify/RejectAlbums" class="btn btn-outline-danger">Onaylanmayan Albümler</a>
+<br />
+@if (Model.Count > 0)
+{
+   
+    <br />
+    <table class="table table-hover table-bordered">
+        <tr>
+            <td>#</td>
+            <td>Resim</td>
+            <td>Albüm Adı</td>
+            <td>Şarkıcı</td>
+            <td>Fiyat</td>
+            <td style="text-align:center" colspan="2">İşlemler</td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td><img src="@item.CoverImage" style="height:75px; width:75px; " /></td>
+                <td>@item.AlbumName</td>
+                <td style="text-transform:capitalize">@item.AppUser.Name @item.AppUser.Surname</td>
+                <td>@item.Price.ToString("N0") ₺</td>
+                <td><button onclick="deleteAlbum1(@item.AlbumId)" class="btn btn-outline-danger">Reddet</button></td>
+                <td><a asp-action="AcceptAlbum" asp-controller="AdminAlbumVerify" asp-route-id="@item.AlbumId" class="btn btn-outline-success">Onayla</a></td>
+            </tr>
+        }
+    </table>
+
+    <br />
+
+    <div style="justify-content:center; align-items:center; display:flex">
+        @Html.PagedListPager((IPagedList)Model,pageNumber =>Url.Action("Index",new {pageNumber}),new PagedListRenderOptions{LiElementClasses = new List  <string> {"page-link"}})
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        async function deleteAlbum1(id) {
+            const result = await Swal.fire({
+                title: "Kayıt Red Onayı",
+                html: "Bu kaydı onaylamamak istediğinize emin misiniz? ",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Evet",
+                cancelButtonText: "Vazgeç",
+            });
+
+            if (result.isConfirmed) {
+                const { value: text, isConfirmed: isConfirmed2 } = await Swal.fire({
+                    input: "textarea",
+                    inputLabel: "Lütfen red nedeninizi açıklayıcı şekilde yazınız.",
+                    inputPlaceholder: "Red Nedeni",
+                    inputAttributes: {
+                        "aria-label": "Red Nedeniniz"
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: "Reddet",
+                    cancelButtonText: "Vazgeç",
+                });
+                if (isConfirmed2) {
+                    $.ajax({
+                        url: "/AdminAlbumVerify/RejectAlbum/",
+                        type: "post",
+                        data: { id: id, text: text },
+                        success: function () {
+                            window.location.href = "/AdminAlbumVerify/Index";
+                        }
+                    })
+                } else {
+                    Toast.fire({
+                        icon: "warning",
+                        title: "İşlem İptal Edildi"
+                    });
+                }
+            } else {
+                Toast.fire({
+                    icon: "warning",
+                    title: "Kayıt Silme işlemi iptal edildi."
+                });
+            }
+        }
+
+
+    </script>
+}
+else
+{
+    <br />
+    <br />
+    <div class="alert alert-info">Burada hiç kayıt yok</div>
+}
+
+
+
+
+

@@ -1,0 +1,33 @@
+﻿<br />
+@model List<Song>
+<div class="one-music-songs-area mb-70">
+    <div class="container">
+        <h2>
+            Ne Dinlemeli ?
+        </h2>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12">
+                    <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+                        <div class="song-thumbnail">
+                            <img src="@item.Album.CoverImage" alt="">
+                        </div>
+                        <div class="song-play-area">
+                            <div class="song-name">
+                                <p>@item.SongName</p>
+                            </div>
+                            <audio preload="auto" controls>
+                                <source src="@item.SongUrl">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            }
+          
+
+          
+
+        </div>
+    </div>
+</div>

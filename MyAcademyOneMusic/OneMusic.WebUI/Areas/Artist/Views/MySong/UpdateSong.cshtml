@@ -1,0 +1,26 @@
+﻿@model UpdateSongViewModel
+@{
+    ViewData["Title"] = "UpdateSong";
+    Layout = "~/Areas/Artist/Views/ArtistLayout/Index.cshtml";
+}
+
+<h1>Şarkı Güncelleme Sayfası</h1>
+<br />
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="SongId" class="form-control" />
+    @Html.Label("Şarkı Adı")
+    <input type="text" asp-for="SongName" class="form-control" />
+    <span class="text-danger" asp-validation-for="SongName"></span>
+    <br />
+    @Html.Label("Şarkınızı Yükleyiniz")
+    <input type="file" asp-for="SongFile" class="form-control" />
+    <span class="text-danger" asp-validation-for="SongFile"></span>
+    <br />
+    @Html.Label("Albüm Seçiniz")
+    @Html.DropDownListFor(x=>x.AlbumId,(List<SelectListItem>)ViewBag.AlbumList,new {@class="form-control"})
+
+    <br />
+    <button class="btn btn-outline-primary">Güncelle</button>
+</form>
+

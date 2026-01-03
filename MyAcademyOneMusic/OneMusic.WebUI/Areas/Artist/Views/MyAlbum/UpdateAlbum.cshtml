@@ -1,0 +1,31 @@
+﻿@model OneMusic.BusinessLayer.Models.Album.UpdateAlbumViewModel
+@{
+    ViewData["Title"] = "UpdateAlbum";
+    Layout = "~/Areas/Artist/Views/ArtistLayout/Index.cshtml";
+}
+
+
+
+<h1>Albüm Güncelleme Sayfası</h1>
+<br />
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="AlbumId" class="form-control" />
+    @Html.Label("Albüm Adı")
+    <input type="text" asp-for="AlbumName" class="form-control" />
+    <span class="text-danger" asp-validation-for="AlbumName"></span>
+    <br />
+    @Html.Label("Albüm Görsel")
+    <input type="file" asp-for="Image" class="form-control" />
+    <span class="text-danger" asp-validation-for="Image"></span>
+    <br />
+    @Html.Label("Fiyat")
+    <input type="text" asp-for="Price" class="form-control" />
+    <span class="text-danger" asp-validation-for="Price"></span>
+    <br />
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>
+
+
+

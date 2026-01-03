@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Default/Views/_DefaultLayout/Index.cshtml";
+}
+
+@await Component.InvokeAsync("_DefaultBannerComponentPartial")
+
+
+@await Component.InvokeAsync("_DefaultAlbumComponentPartial")
+@await Component.InvokeAsync("_DefaultTopOneSingerComponentPartial")
+
+
+
+
+<section class="miscellaneous-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+
+
+
+
+            <!-- ***** Weeks Top ***** -->
+
+
+            @await Component.InvokeAsync("_DefaultHitAlbumComponentPartial")
+            @await Component.InvokeAsync("_DefaultRandomHitPartial")
+            @await Component.InvokeAsync("_DefaultMostListenArtist")
+
+       
+          
+        </div>
+    </div>
+</section>
+
+@await Component.InvokeAsync("_DefaultMessageComponentPartial")
+
+
+
+

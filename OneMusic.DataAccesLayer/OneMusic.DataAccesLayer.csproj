@@ -23,4 +23,8 @@
     <ProjectReference Include="..\OneMusic.EntityLayer\OneMusic.EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

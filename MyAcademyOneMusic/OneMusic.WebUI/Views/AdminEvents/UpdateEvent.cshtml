@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "CreateEvent";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@using OneMusic.WebUI.Models.EventModels;
+@model UpdateEventViewModel
+
+
+<h3> Etkinlik Güncelleme Sayfası</h3>
+<br />
+
+<div class="card-body">
+    <form method="post" enctype="multipart/form-data">
+        @Html.HiddenFor(x=>x.EventID,new {@class="form-control"})
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Başlık</label>
+            @Html.TextBoxFor(x=>x.Title,new {@class="form-control"})
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Adres</label>
+            @Html.TextBoxFor(x=>x.Location,new {@class="form-control"})
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Tarih</label>
+            <input type="datetime-local" class="form-control" asp-for="Date" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Görsel</label>
+            <input type="file" asp-for="FormFile" class="form-control" />
+            <span asp-validation-for="FormFile" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+    </form>
+</div>
+
+
+
+

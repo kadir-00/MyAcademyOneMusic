@@ -1,0 +1,67 @@
+﻿@model List<Song>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Default/Views/_DefaultLayout/Index.cshtml";
+}
+
+<div class="preloader d-flex align-items-center justify-content-center">
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/one-music-gh-pages/img/bg-img/breadcumb3.jpg);">
+    <div class="bradcumbContent">
+        <p style="text-transform:capitalize">@ViewBag.UserNameSurname </p>
+        <h2>@ViewBag.AlbumName</h2>
+    </div>
+</section>
+<div class="one-music-songs-area mt-70 mb-70">
+    <div class="container">
+        <div class="row">
+
+            @if (Model.Count > 0)
+            {
+                <div class="col-8">
+                    @foreach (var item in Model)
+                    {
+                      
+                        <div class="single-song-area mb-30 d-flex flex-wrap align-items-center">
+                           
+                            <div class="song-play-area" style="width:100%">
+                                <div class="song-name">
+                                    <img style="object-fit:cover;" width="100%;" src="@item.Album.CoverImage" />
+                                </div>
+                                <div class="song-name">
+                                    <p>@item.SongName</p>
+                                </div>
+                                <audio preload="auto" controls>
+                                    <source src="@item.SongUrl">
+                                </audio>
+                            </div>
+                           
+                        </div>
+                    }
+                 
+                </div>
+                <div class="col-4 container-fluid" style="justify-content:center; text-align:center; display:flex; align-items:center">
+                    @await Component.InvokeAsync("_LycrisComponentPartial")
+                </div>
+            }
+            else
+            {
+                <div class="container-fluid text-center alert alert-primary">Sanatçı bu albüme henüz şarkı eklemesi yapmamış.</div>
+            }
+
+
+
+        </div>
+
+
+    </div>
+</div>
+
+

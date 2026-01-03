@@ -1,0 +1,24 @@
+﻿@model List<SongsListenDetails>
+<div class="col-12 col-lg-4">
+    <div class="popular-artists-area mb-100">
+        <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+            <p>Haftanın Sanatçıları</p>
+            <h2>En Dinlenenler</h2>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
+                <div class="thumbnail">
+                    <img src="@item.Song.Album.CoverImage" alt="">
+                </div>
+                <div class="content-">
+                    <p>@item.Song.Album.AppUser.Name @item.Song.Album.AppUser.Surname</p>
+                </div>
+            </div>
+        }
+        
+
+
+    </div>
+</div>

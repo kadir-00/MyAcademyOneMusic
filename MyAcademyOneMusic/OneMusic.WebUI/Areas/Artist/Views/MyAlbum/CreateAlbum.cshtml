@@ -1,0 +1,32 @@
+﻿@model CreateAlbumViewModel
+@{
+    ViewData["Title"] = "CreateAlbum";
+    Layout = "~/Areas/Artist/Views/ArtistLayout/Index.cshtml";
+}
+
+<h1>Yeni Albüm Ekleme Sayfası</h1>
+<br />
+<div class="alert alert-light">
+    <small>Albüm ekleme işlemi admin onayına tabi tutulur onay süresi 24 saat ile 48 arasında değişiklik gösterebilir lütfen bilgileri doğru ve eksiksiz girdiğinizden emin olun.</small>
+</div>
+<form method="post" enctype="multipart/form-data">
+
+    @Html.Label("Albüm Adı")
+    <input type="text" asp-for="AlbumName" class="form-control" />
+    <span class="text-danger" asp-validation-for="AlbumName"></span>
+    <br />
+    @Html.Label("Albüm Kategori Seçiniz")
+    <select asp-for="CategoryID" asp-items="@ViewBag.categories" class="form-control"></select>
+    <span class="text-danger" asp-validation-for="Image"></span>
+    <br />
+    @Html.Label("Albüm Görsel")
+    <input type="file" asp-for="Image" class="form-control" />
+    <span class="text-danger" asp-validation-for="Image"></span>
+    <br />
+    @Html.Label("Fiyat")
+    <input type="text" asp-for="Price" class="form-control" />
+    <span class="text-danger" asp-validation-for="Price"></span>
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>
+

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Default/Views/_DefaultLayout/Index.cshtml";
+}
+
+@model List<Event>
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url(/one-music-gh-pages/img/bg-img/breadcumb3.jpg);">
+    <div class="bradcumbContent">
+        <p>Yeni</p>
+        <h2>Etkinlikler</h2>
+    </div>
+</section>
+
+<section class="events-area section-padding-100">
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-event-area mb-30">
+                        <div class="event-thumbnail">
+                            <img src="@item.ImageURL" alt="">
+                        </div>
+                        <div class="event-text">
+                            <h4>@item.Title</h4>
+                            <div class="event-meta-data">
+                                <a href="#" class="event-place">@item.Location</a>
+                                <a href="#" class="event-date">@item.Date.ToShortDateString()</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</section>

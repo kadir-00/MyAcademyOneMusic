@@ -1,0 +1,18 @@
+﻿@model AppRole
+@{
+    ViewData["Title"] = "CreateRole";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<h1>Yeni Rol Ekleme Sayfası</h1>
+<br />
+
+<form method="post" >
+    @Html.Label("Rol Adı")
+    <input type="text" asp-for="Name" class="form-control" />
+    <span class="text-danger" asp-validation-for="Name"></span>
+    <br />
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>
+

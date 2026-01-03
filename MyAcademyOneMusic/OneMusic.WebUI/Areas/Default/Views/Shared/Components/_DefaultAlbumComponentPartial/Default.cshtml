@@ -1,0 +1,42 @@
+﻿@using OneMusic.EntityLayer.Entities;
+@model List<Album>
+<section class="latest-albums-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading style-2">
+                    <p>En yeni albümleri keşfedin</p>
+                    <h2>Son eklenen albümler</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9">
+                <div class="albums-text text-center mb-70">
+                    <p>Sitemizde pop müzikten rock müziğe, arabeskten halk müziğine her türden müziğe erişebilirsiniz. </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="albums-slideshow owl-carousel">
+                    @foreach (var item in Model)
+                    {
+                        <div class="single-album">
+                            <img src="@item.CoverImage" alt="">
+                            <div class="album-info">
+                                <a href="/Default/AlbumDetail/Index/@item.AlbumId">
+                                    <h5>@item.AppUser.Name @item.AppUser.Surname</h5>
+                                </a>
+                                <p>@item.AlbumName</p>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

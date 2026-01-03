@@ -1,0 +1,125 @@
+﻿@model ResultUserViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div id="spinner" class="d-none">
+    Lütfen Bekleyin.. &nbsp;
+    <div class="spinner-border" role="status">
+        <span class="sr-only"></span>
+    </div>
+
+</div>
+<script>
+    function showSpinner() {
+        document.getElementById('spinner').classList.remove('d-none');
+    }
+
+</script>
+@if (TempData["userEmailConfirmedTimer"] != null)
+{
+    <script>
+        var timer = 60;
+        function startTimer() {
+
+            timer--;
+            document.getElementById("mailtimer").innerText = timer;
+            if (timer < 0) {
+                window.clearInterval(deger);
+                Swal.fire({
+                    title: "Aktivasyon kodu süresi doldu!",
+                    text: "Lütfen yeniden deneyin.",
+                    icon: "info"
+                });
+
+            }
+        }
+        var deger = window.setInterval('startTimer()', 1000);
+    </script>
+
+    <div class="alert alert-info" style="display:flex; justify-content:center; align-items:center">
+        Mail onayı için kalan süre :60 &nbsp; <b><span id="mailtimer"></span></b>
+    </div>
+
+}
+
+
+<form method="post" enctype="multipart/form-data">
+    <div style="justify-content:center; justify-content:space-around;  align-items:center; display:flex">
+        <span style="font-weight:bold">Hoş Geldiniz, <span style="text-transform:capitalize"> @Model.Name @Model.Surname</span></span>
+        <br />
+        <br />
+        <img src="@Model.ImageURL" class="shadow-lg p-3 mb-5 bg-white rounded" style="border-radius:50%;  width:150px; height:150px;" /><br />
+        <br />
+    </div>
+
+    @if (!Model.IsEmailConfirmed)
+    {
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+            <div>
+                Hesap güvenliği için <b>e posta adresinizi <a asp-action="SendMailForVerifyMail" asp-route-id="@Model.Id">onaylayınız</a></b>
+            </div>
+        </div>
+    }
+
+    @Html.Label("Adınız")
+    <input type="hidden" asp-for="Id" class="form-control" />
+    <input type="text" asp-for="Name" class="form-control" />
+    <span class="text-danger" asp-validation-for="Name"></span>
+    <br />
+    @Html.Label("Soyadınız")
+    <input type="text" asp-for="Surname" class="form-control" />
+    <span class="text-danger" asp-validation-for="Surname"></span>
+    <br />
+    @Html.Label("Kullanıcı Adınız")
+    <input type="text" asp-for="UserName" class="form-control" />
+    <span class="text-danger" asp-validation-for="UserName"></span>
+    <br />
+    @Html.Label("Email Adresiniz")  @if (Model.IsEmailConfirmed == true)
+    {
+        <small style="font-weight:bold" class="text-success "> ( Doğrulandı <i class="ti ti-check"></i>) </small>
+    }
+    else
+    {
+        <small style="font-weight:bold" class="text-danger"> ( Doğrulanmadı <i class="ti ti-x"></i>) </small>
+    }
+    <input type="text" asp-for="Email" class="form-control" />
+    <span class="text-danger" asp-validation-for="Email"></span>
+    <br />
+    @Html.Label("Telefon Numaranız") 
+    <input type="text" asp-for="PhoneNumber" class="form-control" />
+    <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+    <br />
+    @Html.Label("Mevcut Şifreniz")
+    <input type="password" asp-for="OldPassword" class="form-control" required />
+    <span class="text-danger" asp-validation-for="OldPassword"></span>
+    <br />
+    <br />
+    @Html.Label("Şifreniz")
+    <input type="password" asp-for="Password" class="form-control" />
+    <span class="text-danger" asp-validation-for="Password"></span>
+    <br />
+    @Html.Label("Şifreniz Yeniden")
+    <input type="password" asp-for="ConfirmPassword" class="form-control" />
+    <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+    <br />
+    @Html.Label("Görsel")
+    <input type="file" asp-for="CoverPhoto" class="form-control" />
+    <span class="text-danger" asp-validation-for="CoverPhoto"></span>
+    <br />
+
+    @if (ViewBag.ResultPassword != null)
+    {
+        <div class="alert alert-danger">
+            @Html.Raw(ViewBag.ResultPassword)
+        </div>
+    }
+    <button class="btn btn-outline-primary">Güncelle</button>
+</form>
+
+

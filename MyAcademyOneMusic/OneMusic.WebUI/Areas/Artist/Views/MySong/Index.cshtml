@@ -1,0 +1,67 @@
+﻿@model List<Song>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Artist/Views/ArtistLayout/Index.cshtml";
+    int count = 0;
+}
+
+<h1>Şarkılarım</h1>
+<br />
+<a asp-action="CreateSong" class="btn btn-outline-primary">Yeni Şarkı Ekle</a>
+<br />
+<br />
+<table class="table table-hover table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Şarkı Adı</th>
+        <th>Şarkı</th>
+        <th>Albüm</th>
+        <th style="text-align:center" colspan="2">İşlemler</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.SongName</td>
+            <td style="text-align:center">
+                <audio data-id="@item.SongId"  class="audioPlayer" preload="auto" controls>
+                    <source src="@item.SongUrl">
+                </audio>
+            </td>
+            <td>@item.Album.AlbumName</td>
+            <td><a asp-action="UpdateSong" asp-route-id="@item.SongId" class="btn btn-outline-success">Güncelle</a></td>
+            <td><button onclick="deleteSong(@item.SongId)" class="btn btn-outline-danger">Sil</button></td>
+        </tr>
+    }
+</table>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/song.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  
+    function deleteSong(id) {
+        Swal.fire({
+            title: "Kayıt Silme Onayı",
+            html: "Bu kaydı silmek istediğinize emin misiniz? <br><b> bu işlem geri alanımaz.</b>",
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sil",
+            cancelButtonText: "Vazgeç"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/Artist/MySong/DeleteSong/" + id;
+            }
+            else {
+                Toast.fire({
+                    icon: "warning",
+                    title: "Kayıt Silme işlemi iptal edildi."
+                });
+            }
+        });
+    }
+</script>
+

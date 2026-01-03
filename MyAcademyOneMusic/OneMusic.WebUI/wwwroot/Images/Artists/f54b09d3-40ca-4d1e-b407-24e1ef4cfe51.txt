@@ -1,0 +1,8 @@
+ var resource = Directory.GetCurrentDirectory();
+ var ex = Path.GetExtension(model.ImageFile.FileName);
+ var imageName = Guid.NewGuid() + ex;
+ var saveLocation = resource + "/wwwroot/images/" + imageName;
+ var stream = new FileStream(saveLocation, FileMode.Create);
+ await model.ImageFile.CopyToAsync(stream);
+ stream.Dispose();
+ stream.Close();

@@ -1,0 +1,103 @@
+﻿@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OneMusic Panel</title>
+    <link rel="shortcut icon" type="image/png" href="~/one-music-gh-pages/img/core-img/favicon.ico" />
+    <link rel="stylesheet" href="~/Templates/Modernize-1.0.0/src/assets/css/styles.min.css" />
+    <style>
+        /* OneMusic Theme Override */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .sidebar-nav ul .sidebar-item.selected>.sidebar-link,
+        .sidebar-nav ul .sidebar-item.selected>.sidebar-link.active,
+        .sidebar-nav ul .sidebar-item>.sidebar-link.active {
+            background-color: #000000;
+            /* Black */
+            color: #ffffff;
+        }
+
+        .btn-primary {
+            background-color: #000000;
+            border-color: #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #333333;
+            border-color: #333333;
+        }
+
+        .app-header {
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .text-primary {
+            color: #000000 !important;
+        }
+
+        .bg-primary {
+            background-color: #000000 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+        @await Component.InvokeAsync("_AdminLayoutSideBarComponentPartial")
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+            <!--  Header Start -->
+            <header class="app-header">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <ul class="navbar-nav">
+                        <li class="nav-item d-block d-xl-none">
+                            <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse"
+                                href="javascript:void(0)">
+                                <i class="ti ti-menu-2"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                                <i class="ti ti-bell-ringing"></i>
+                                <div class="notification bg-primary rounded-circle"></div>
+                            </a>
+                        </li>
+                    </ul>
+                    @await Component.InvokeAsync("_AdminNavbarComponentPartial")
+
+                </nav>
+            </header>
+            <!--  Header End -->
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-body">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Templates/Modernize-1.0.0/src/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/Templates/Modernize-1.0.0/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Templates/Modernize-1.0.0/src/assets/js/sidebarmenu.js"></script>
+    <script src="~/Templates/Modernize-1.0.0/src/assets/js/app.min.js"></script>
+    <script src="~/Templates/Modernize-1.0.0/src/assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/test.js"></script>
+
+    @await Html.PartialAsync("~/Views/AdminLayout/NotificationPartial.cshtml")
+</body>
+
+</html>

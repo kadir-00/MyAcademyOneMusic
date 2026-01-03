@@ -1,0 +1,24 @@
+﻿@model List<Album>
+
+<div class="col-12 col-lg-4">
+    <div class="weeks-top-area mb-100">
+        <div class="section-heading text-left mb-50 wow fadeInUp" data-wow-delay="50ms">
+            <p>Bu Haftanın Yenileri</p>
+            <h2>Hit Albümler</h2>
+        </div>
+        @foreach (var item in Model)
+        {
+            <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
+                <div class="thumbnail">
+                    <img src="@item.CoverImage" alt="">
+                </div>
+                <div class="content-">
+                    <h6>@item.AppUser @item.AppUser.Surname</h6>
+                    <p>@item.AlbumName</p>
+                </div>
+            </div>
+
+        }
+       
+    </div>
+</div>

@@ -13,12 +13,6 @@ namespace OneMusic.EntityLayer.Entities
         public string CoverImage { get; set; }
         public string Price { get; set; }
 
-        
-
-        public int? AppUserId { get; set; }
-
-        public AppUser AppUser { get; set; }
-
         public List<Song> Songs { get; set; }
 
         public int? CategoryId { get; set; }

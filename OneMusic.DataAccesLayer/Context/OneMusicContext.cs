@@ -10,24 +10,20 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccesLayer.Context
 {
-    public class OneMusicContext : IdentityDbContext<AppUser,AppRole,int>
+    public class OneMusicContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=KDR;database=OneMusicDb;integrated security=true;trustServerCertificate=true");
+            optionsBuilder.UseSqlServer("server=DESKTOP-R0GSR22\\SQLEXPRESS;database=OneMusicDb;user=sa;Password=1;trustServerCertificate=true");
         }
-
         // DbSetlerimi olusturucam 
         // tekil olanlar bizim entities'lerimiz cogullar sql'e yansitacagimiz tablo ismi 
         public DbSet<About> Abouts { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Banner> Banners { get; set; }
-        public DbSet<Contact> Contacts  { get; set; }
+		public DbSet<Contact> Contacts  { get; set; }
         public DbSet<Message> Messages  { get; set; }
         public DbSet<Singer> Singers  { get; set; }
         public DbSet<Song> Songs  { get; set; }
-
-        public DbSet<Category> Categories { get; set; }
-
     }
 }

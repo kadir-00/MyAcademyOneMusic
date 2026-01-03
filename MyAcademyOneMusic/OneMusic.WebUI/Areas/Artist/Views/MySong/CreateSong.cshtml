@@ -1,0 +1,28 @@
+﻿@model CreateSongViewModel
+@{
+    ViewData["Title"] = "CreateSong";
+    Layout = "~/Areas/Artist/Views/ArtistLayout/Index.cshtml";
+}
+
+<h1>Yeni Şarkı Ekleme Sayfası</h1>
+<br />
+<div class="alert alert-light">
+    <small>Şarkı ekleme işlemi onaya tabi tutulur onay süresi 24 saat ile 48 arasında değişiklik gösterebilir lütfen bilgileri doğru ve eksiksiz girdiğinizden emin olun.</small>
+</div>
+<form method="post" enctype="multipart/form-data">
+
+    @Html.Label("Şarkı Adı")
+    <input type="text" asp-for="SongName" class="form-control" />
+    <span class="text-danger" asp-validation-for="SongName"></span>
+    <br />
+    @Html.Label("Şarkınızı Yükleyiniz")
+    <input type="file" asp-for="SongFile" class="form-control" />
+    <span class="text-danger" asp-validation-for="SongFile"></span>
+    <br />
+    @Html.Label("Albüm Seçiniz")
+    @Html.DropDownListFor(x=>x.AlbumId,(List<SelectListItem>)ViewBag.AlbumList,new {@class="form-control"})
+
+    <br />
+    <button class="btn btn-outline-primary">Kaydet</button>
+</form>
+

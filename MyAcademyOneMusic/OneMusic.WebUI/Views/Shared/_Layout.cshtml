@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="One Music">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>@ViewData["Title"] - OneMusic</title>
+
+    <link rel="icon" href="~/one-music-gh-pages/img/core-img/favicon.ico">
+    <link rel="stylesheet" href="~/one-music-gh-pages/style.css">
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="lds-ellipsis">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+                        <a href="/" class="nav-brand"><img src="~/one-music-gh-pages/img/core-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/">Anasayfa</a></li>
+                                    <li><a href="/Home/Albums">Albümler</a></li>
+                                    <li><a href="#">Sayfalar</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/">Anasayfa</a></li>
+                                            <li><a href="/Home/Albums">Albümler</a></li>
+                                            <li><a href="/Home/Events">Etkinlikler</a></li>
+                                            <li><a href="/Home/News">Haberler</a></li>
+                                            <li><a href="/Home/Contact">İletişim</a></li>
+                                            <li><a href="/Login/Index">Giriş Yap</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/Home/Events">Etkinlikler</a></li>
+                                    <li><a href="/Home/News">Haberler</a></li>
+                                    <li><a href="/Home/Contact">İletişim</a></li>
+                                </ul>
+
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <div class="login-register-btn mr-50">
+                                        <a href="/Login/Index" id="loginBtn">Giriş Yap / Kayıt Ol</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    @RenderBody()
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <div class="container">
+            <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-12 col-md-6">
+                    <a href="#"><img src="~/one-music-gh-pages/img/core-img/logo.png" alt=""></a>
+                    <p class="copywrite-text">
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+                        is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                            target="_blank">Colorlib</a>
+                    </p>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="footer-nav">
+                        <ul>
+                            <li><a href="/">Anasayfa</a></li>
+                            <li><a href="/Home/Albums">Albümler</a></li>
+                            <li><a href="/Home/Events">Etkinlikler</a></li>
+                            <li><a href="/Home/News">Haberler</a></li>
+                            <li><a href="/Home/Contact">İletişim</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- jQuery-2.2.4 js -->
+    <script src="~/one-music-gh-pages/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="~/one-music-gh-pages/js/bootstrap/popper.min.js"></script>
+    <script src="~/one-music-gh-pages/js/bootstrap/bootstrap.min.js"></script>
+    <script src="~/one-music-gh-pages/js/plugins/plugins.js"></script>
+    <script src="~/one-music-gh-pages/js/active.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

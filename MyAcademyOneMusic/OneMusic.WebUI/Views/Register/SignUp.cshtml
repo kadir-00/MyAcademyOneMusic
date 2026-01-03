@@ -1,0 +1,71 @@
+﻿@using OneMusic.WebUI.Models.RegisterModels;
+@model RegisterViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>OneMusic Kayıt Ekranı</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="~/Templates/colorlib-regform-21/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="~/Templates/colorlib-regform-21/css/style.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="inner">
+            <form asp-action="SignUp" method="post">
+                <h3>OneMusic Kayıt Formu</h3>
+                <div class="form-wrapper">
+                    <label class="label-input">Adınız</label>
+                    <input type="text" required asp-for="Name" class="form-control">
+                </div>
+                <div class="form-wrapper">
+                    <label class="label-input">Soyad</label>
+                    <input type="text" required asp-for="Surname" class="form-control">
+                </div>
+                <div class="form-wrapper">
+                    <label class="label-input">E posta</label>
+                    <input type="text" required asp-for="Email" class="form-control">
+                </div>
+                <div class="form-wrapper">
+                    <label class="label-input">Kullanıcı Adı</label>
+                    <input type="text" required asp-for="UserName" class="form-control">
+                </div>
+                <div class="form-wrapper">
+                    <label class="label-input">Şifre</label>
+                    <input type="password" required asp-for="Password" class="form-control">
+                </div>
+                <div class="form-wrapper">
+                    <label class="label-input">Şifre Tekrar</label>
+                    <input type="password" required asp-for="ConfirmPassword" class="form-control">
+                </div>
+
+                <br />
+               
+                    <label style="color:white" class="label-input">Zaten hesabınız var mı ? <a style="color:wheat" href="/Login/Index">Giriş Yap</a></label>
+      
+                <button>Kayıt Ol</button>
+                <div style="color:red; margin-top:20px" >
+           
+                    @Html.ValidationSummary()
+                </div>
+            </form>
+            <div class="image-holder">
+                <img src="~/Templates/colorlib-regform-21/images/registration-form-5.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Templates/colorlib-regform-21/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Templates/colorlib-regform-21/js/main.js"></script>
+</body><ü
+</html>

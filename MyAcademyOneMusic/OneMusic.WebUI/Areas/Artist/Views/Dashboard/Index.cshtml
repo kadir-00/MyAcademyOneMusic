@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Artist/Views/ArtistLayout/Index.cshtml";
+}
+
+
+<div style="justify-content:space-around; align-items:center; display:flex;">
+    <h2 style="text-transform:capitalize">@ViewBag.ArtistUserName</h2>
+    <img src="@ViewBag.ArtistImageUrl" style="width:200px; height:200px; border-radius:50%" />
+</div>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+            <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4"> Albüm Sayım</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="fw-semibold fs-4 mb-0">@ViewBag.albumCount</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+            <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Onay Bekleyen Albümlerim</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="fw-semibold fs-4 mb-0">@ViewBag.WaitingAlbumCount</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+            <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">En Pahalı Albümüm</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="fw-semibold fs-4 mb-0">@ViewBag.ExpensiveAlbumName</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+            <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Şarkılarım</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="fw-semibold fs-4 mb-0">@ViewBag.SongCount</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+            <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Email Adresim</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="fw-semibold fs-4 mb-0">@ViewBag.Email</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+            <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Telefon Numaram</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="fw-semibold fs-4 mb-0">@ViewBag.PhoneNumber</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+            <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">İki Adımlı Doğrulama</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="fw-semibold fs-4 mb-0">@(ViewBag.IsTwoFactor == true ? "Aktif" : "Kapalı")</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3">
+        <div class="card overflow-hidden rounded-2">
+            <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Dinlenme Sayısı</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h6 class="fw-semibold fs-4 mb-0">@ViewBag.ListenCount</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

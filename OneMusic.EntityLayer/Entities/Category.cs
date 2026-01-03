@@ -10,7 +10,6 @@ namespace OneMusic.EntityLayer.Entities
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-
         public List<Category> Albums { get; set; }
     }
 }

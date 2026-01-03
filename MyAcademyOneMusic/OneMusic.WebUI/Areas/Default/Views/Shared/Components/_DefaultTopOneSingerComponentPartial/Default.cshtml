@@ -1,0 +1,41 @@
+﻿@model Song
+@if (Model != null)
+
+{
+    <section class="featured-artist-area section-padding-100 bg-img bg-overlay bg-fixed"
+        style="background-image: url(/one-music-gh-pages/img/bg-img/bg-4.jpg);">
+        <div class="container">
+            <div class="row align-items-end">
+                <div class="col-12 col-md-5 col-lg-4">
+                    <div class="featured-artist-thumb">
+                        <img src="@Model.Album.AppUser.ImageURL" alt="">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-7 col-lg-8">
+                    <div class="featured-artist-content">
+                        <!-- Section Heading -->
+                        <div class="section-heading white text-left mb-30">
+                            <p>Öne Çıkan Albüm</p>
+                            <h2>En çok dinlnen albüm</h2>
+                        </div>
+                        <p>"Bu haftanın en popüler sanatçısı, milyonlarca dinleyiciyi etkileyen <span
+                                style="text-transform:capitalize">@Model.Album.AppUser.Name
+                                @Model.Album.AppUser.Surname</span> Büyüleyici şarkılarıyla müzik dünyasına yön veriyor."
+                        </p>
+                        <div class="song-play-area">
+                            <div class="song-name">
+                                <p>@Model.SongName</p>
+                            </div>
+                            <audio preload="auto" controls>
+                                <source src="@Model.SongUrl">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+}

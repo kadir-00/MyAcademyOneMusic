@@ -1,0 +1,56 @@
+﻿@model List<AppRole>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<h1>Rol Alanı</h1>
+<br />
+<table class="table table-hover table-bordered">
+    <tr>
+        <td>#</td>
+        <td>Rol Adı</td>
+        <td class="text-center" colspan="2">İşlemler</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.Name</td>
+            <td class="text-center"><button onclick="deleteRole(@item.Id)" class="btn btn-outline-danger">Sil</button></td>
+            <td class="text-center"><a asp-action="UpdateRole" asp-route-id="@item.Id" class="btn btn-outline-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a asp-action="CreateRole" class="btn btn-outline-success">Yeni Rol Ekle</a>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    function deleteRole(id) {
+        Swal.fire({
+            title: "Kayıt Silme Onayı",
+            html: "Bu kaydı silmek istediğinize emin misiniz? <br><b> bu işlem geri alanımaz.</b>",
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sil",
+            cancelButtonText: "Vazgeç"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/Role/DeleteRole/" + id;
+            }
+            else {
+                Toast.fire({
+                    icon: "warning",
+                    title: "Kayıt Silme işlemi iptal edildi."
+                });
+            }
+        });
+    }
+</script>
+
+

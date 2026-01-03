@@ -1,0 +1,85 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model IPagedList<Album>
+@{
+    ViewData["Title"] = "RejectAlbums";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+
+
+
+<h1>Onay Bekliyen Albümler (@Model.Count())</h1>
+<br />
+<a href="/AdminAlbumVerify/Index" class="btn btn-outline-success">Onay Bekliyen Albümler</a>
+<a href="/AdminAlbumVerify/RejectAlbums" class="btn btn-outline-danger">Onaylanmayan Albümler</a>
+<br />
+@if (Model.Count > 0)
+{
+
+    <br />
+    <table class="table table-hover table-bordered">
+        <tr>
+            <td>Albüm Adı</td>
+            <td>Şarkıcı</td>
+            <td>Red Nedeni</td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AlbumName</td>
+                <td style="text-transform:capitalize">@item.AppUser.Name @item.AppUser.Surname</td>
+                <td style="text-transform:capitalize">@item.VerifyDescription</td>
+                <td style="text-align:center"><button onclick="deleteAlbumReject(@item.AlbumId)" class="btn btn-outline-danger">Kalıcı Olarak Sil</button></td>
+             
+            </tr>
+        }
+    </table>
+    <br />
+
+    <div style="justify-content:center; align-items:center; display:flex">
+        @Html.PagedListPager((IPagedList)Model,pageNumber =>Url.Action("RejectAlbums",new {pageNumber}),new PagedListRenderOptions{LiElementClasses = new List  <string> {"page-link"}})
+    </div>
+}
+else
+{
+    <br />
+    <br />
+    <div class="alert alert-info">Burada hiç kayıt yok</div>
+}
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    function deleteAlbumReject(id) {
+        Swal.fire({
+            title: "Kayıt Silme Onayı",
+            html: "Bu kaydı silmek istediğinize emin misiniz? <br><b> bu işlem geri alanımaz.</b>",
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Sil",
+            cancelButtonText: "Vazgeç"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/AdminAlbumVerify/DeleteAlbum/" + id;
+            }
+            else {
+                Toast.fire({
+                    icon: "warning",
+                    title: "Kayıt Silme işlemi iptal edildi."
+                });
+            }
+        });
+    }
+</script>
+
+
+
+
+
