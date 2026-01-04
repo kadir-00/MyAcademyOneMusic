@@ -10,7 +10,7 @@ using System.Web;
 namespace OneMusic.WebUI.Areas.Artist.Controllers
 {
     [Area("Artist")]
-    //[Authorize(Roles = "Artist")]
+    [Authorize(Roles = "Artist")]
     [Route("[area]/[controller]/[action]/{id?}")]
     public class ProfileController : Controller
     {
@@ -62,29 +62,7 @@ namespace OneMusic.WebUI.Areas.Artist.Controllers
             };
         }
 
-        public async Task<IActionResult> SendMailForVerifyMail()
-        {
-            AppUser user = null;
-            if (User.Identity?.Name != null)
-            {
-                user = await _userManager.FindByNameAsync(User.Identity.Name);
-            }
 
-            if (user == null)
-            {
-                user = _userManager.Users.FirstOrDefault();
-            }
-
-            if (user != null)
-            {
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                _mailService.sendMail(user.Email, "Mail Doğrulama", $"Merhaba,<br><br>Mailinizi aşağıdaki url üzerinden doğrulayabilirsiniz. <br/ ><a href=\"https://localhost:7238{Url.Action("EmailConfirmed", "Login", new { id = user.Id, token = HttpUtility.UrlEncode(token) })}\">Mailimi Doğrula</a><br><br> One Music");
-
-            }
-            TempData["Result"] = "Mail Onaylama isteği gönderildi";
-            TempData["icon"] = "success";
-            return RedirectToAction("Index");
-        }
         [HttpGet]
         public async Task<IActionResult> Index()
         {

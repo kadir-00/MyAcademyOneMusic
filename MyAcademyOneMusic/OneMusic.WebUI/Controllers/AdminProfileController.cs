@@ -11,7 +11,7 @@ using System.Web;
 
 namespace OneMusic.WebUI.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminProfileController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -26,15 +26,26 @@ namespace OneMusic.WebUI.Controllers
 
         async Task<ResultUserViewModel> LoadUserData()
         {
-            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            var userName = User.Identity?.Name;
+            if (string.IsNullOrEmpty(userName))
+            {
+                return new ResultUserViewModel();
+            }
+
+            var values = await _userManager.FindByNameAsync(userName);
+            if (values == null)
+            {
+                return new ResultUserViewModel();
+            }
+
             ResultUserViewModel resultUserViewModel = new ResultUserViewModel()
             {
-                Name = values.Name,
-                Surname = values.Surname,
-                Email = values.Email,
-                PhoneNumber = values.PhoneNumber,
-                UserName = values.UserName,
-                ImageURL = values.ImageURL,
+                Name = values.Name ?? "",
+                Surname = values.Surname ?? "",
+                Email = values.Email ?? "",
+                PhoneNumber = values.PhoneNumber ?? "",
+                UserName = values.UserName ?? "",
+                ImageURL = values.ImageURL ?? "",
                 Id = values.Id,
                 IsEmailConfirmed = values.EmailConfirmed,
                 IsPhoneConfirmed = values.PhoneNumberConfirmed,
@@ -44,16 +55,7 @@ namespace OneMusic.WebUI.Controllers
 
         }
 
-        public async Task<IActionResult> SendMailForVerifyMail(int id)
-        {
-            AppUser user = await _userManager.FindByIdAsync(id.ToString());
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            _mailService.sendMail(user.Email, "Mail Doğrulama", $"Merhaba,<br><br>Mailinizi aşağıdaki url üzerinden doğrulayabilirsiniz. <br/ ><a href=\"https://localhost:7238{Url.Action("EmailConfirmed", "Login", new { id = user.Id, token = HttpUtility.UrlEncode(token) })}\">Mailimi Doğrula</a><br><br> One Music");
-            TempData["Result"] = "Aktivasyon Kodu Gönderildi aktivasyon süresi 1 dakikadır";
-            TempData["icon"] = "success";
-            TempData["userEmailConfirmedTimer"] = "success";
-            return RedirectToAction("Index");
-        }
+
 
 
 
@@ -67,7 +69,17 @@ namespace OneMusic.WebUI.Controllers
         public async Task<IActionResult> Index(ResultUserViewModel resultUserViewModel)
         {
             ModelState.Clear();
+            if (resultUserViewModel.OldPassword == null)
+            {
+                ModelState.AddModelError("OldPassword", "Mevcut şifrenizi giriniz");
+                return View(await LoadUserData());
+            }
+
             var values = await _userManager.FindByIdAsync(resultUserViewModel.Id.ToString());
+            if (values == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
             var Pwdresult = await _userManager.CheckPasswordAsync(values, resultUserViewModel.OldPassword);
             if (Pwdresult)
             {
@@ -102,7 +114,10 @@ namespace OneMusic.WebUI.Controllers
                 if (resultUserViewModel.CoverPhoto != null)
                 {
                     var result = ImageSetting.CreateImage(resultUserViewModel.CoverPhoto, "Users/Admins");
-                    ImageSetting.DeleteImage(values.ImageURL);
+                    if (values.ImageURL != null)
+                    {
+                        ImageSetting.DeleteImage(values.ImageURL);
+                    }
                     values.ImageURL = result;
                 }
 
@@ -117,8 +132,8 @@ namespace OneMusic.WebUI.Controllers
                 ModelState.AddModelError("OldPassword", "Mevcut şifreniz hatalı");
                 return View(await LoadUserData());
             }
-         
+
         }
-       
+
     }
 }

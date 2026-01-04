@@ -10,7 +10,7 @@ using OneMusic.WebUI.Models.SongModels;
 namespace OneMusic.WebUI.Areas.Artist.Controllers
 {
     [Area("Artist")]
-    //[Authorize(Roles = "Artist")]
+    [Authorize(Roles = "Artist")]
     [Route("[area]/[controller]/[action]/{id?}")]
     public class MySongController : Controller
     {

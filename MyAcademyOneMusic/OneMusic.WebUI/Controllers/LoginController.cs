@@ -31,7 +31,7 @@ namespace OneMusic.WebUI.Controllers
             {
                 ModelState.AddModelError("", "Mail adresiniz güncellendi");
             }
-   
+
             return View();
         }
         [HttpPost]
@@ -43,7 +43,7 @@ namespace OneMusic.WebUI.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, false, false);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                    var user = await _userManager.FindByNameAsync(model.UserName);
                     var ArtistResult = await _userManager.IsInRoleAsync(user, "Artist");
                     var AdminResult = await _userManager.IsInRoleAsync(user, "Admin");
                     if (ArtistResult)
@@ -140,13 +140,18 @@ namespace OneMusic.WebUI.Controllers
             if (pwd == confrmpwd)
             {
 
-                AppUser user = await _userManager.FindByIdAsync(id);
+                AppUser? user = await _userManager.FindByIdAsync(id);
+                if (user == null) return RedirectToAction("Index");
+
                 var result = await _userManager.ResetPasswordAsync(user, token, pwd);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignOutAsync();
                     await _userManager.UpdateAsync(user);
-                    _mailService.sendMail(user.Email, "Şifre Başarıyla Sıfırlandı", "Merhaba, <h3 style=text-transform:capitalize>" + user.Name + " " + user.Surname + "</h3> birkaç dakika önce şifreniz sıfırlandı bu işlem size ait değilse lütfen iletişime geçiniz. <br> One Music");
+                    if (!string.IsNullOrEmpty(user.Email))
+                    {
+                        _mailService.sendMail(user.Email, "Şifre Başarıyla Sıfırlandı", "Merhaba, <h3 style=text-transform:capitalize>" + user.Name + " " + user.Surname + "</h3> birkaç dakika önce şifreniz sıfırlandı bu işlem size ait değilse lütfen iletişime geçiniz. <br> One Music");
+                    }
 
                     return RedirectToAction("Index");
                 }
@@ -165,46 +170,7 @@ namespace OneMusic.WebUI.Controllers
         }
 
 
-        public async Task<JsonResult> ConfirmEmail()
-        {
-            var email = TempData["userMail"].ToString();
-            AppUser user = await _userManager.FindByEmailAsync(email);
 
-            if (user != null)
-            {
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                _mailService.sendMail(email, "Mail Doğrulama", $"Merhaba,<br><br>Mailinizi aşağıdaki url üzerinden doğrulayabilirsiniz. <br/ ><a href=\"https://localhost:7238{Url.Action("EmailConfirmed", "Login", new { id = user.Id, token = HttpUtility.UrlEncode(token) })}\">Mailimi Doğrula</a><br><br> One Music");
-
-            }
-
-            return Json(null);
-        }
-        [HttpGet("[action]/{id}/{token}")]
-        public async Task<IActionResult> EmailConfirmed(string id, string token, string returnUrl)
-        {
-            var user = await _userManager.FindByIdAsync(id.ToString());
-
-            var result = await _userManager.ConfirmEmailAsync(user, HttpUtility.UrlDecode(token));
-
-            if (result.Succeeded)
-            {
-                await _userManager.UpdateAsync(user);
-                if (returnUrl != null)
-                {
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    return Redirect("/Login/Index?returnUrl=1");
-                }
-            }
-            else
-            {
-                return BadRequest();
-            }
-
-
-        }
 
 
     }

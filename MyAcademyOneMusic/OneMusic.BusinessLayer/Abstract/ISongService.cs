@@ -17,6 +17,8 @@ namespace OneMusic.BusinessLayer.Abstract
         List<Song> TgetRandomHitAlbumWithRelationShip();
 
         Song TGetRandomBestSong();
+        List<Song> TGetLast6Songs();
+        List<Song> TGetSongsOrderedByDate(int maxPerArtist, int totalCount);
     }
 
 }

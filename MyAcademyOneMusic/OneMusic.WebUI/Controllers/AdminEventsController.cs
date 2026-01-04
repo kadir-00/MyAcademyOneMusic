@@ -4,8 +4,11 @@ using OneMusic.EntityLayer.Entities;
 using OneMusic.WebUI.ImageSettings;
 using OneMusic.WebUI.Models.EventModels;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace OneMusic.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminEventsController : Controller
     {
         private readonly IEventDal _eventDal;
@@ -59,7 +62,7 @@ namespace OneMusic.WebUI.Controllers
         [HttpPost]
         public IActionResult UpdateEvent(UpdateEventViewModel model)
         {
-       
+
             var value = _eventDal.GetById(model.EventID);
             if (model.FormFile != null)
             {
@@ -67,7 +70,7 @@ namespace OneMusic.WebUI.Controllers
                 value.ImageURL = result;
             }
             value.Date = model.Date;
-            value.Location = model.Location;    
+            value.Location = model.Location;
             value.Title = model.Title;
             _eventDal.Update(value);
             TempData["Result"] = "Kayıt Güncellendi";

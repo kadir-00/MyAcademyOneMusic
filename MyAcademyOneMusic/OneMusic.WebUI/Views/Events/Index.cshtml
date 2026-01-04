@@ -1,0 +1,47 @@
+@model List<OneMusic.EntityLayer.Entities.Event>
+@{
+    ViewData["Title"] = "Etkinlikler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="breadcumb-area bg-img bg-overlay"
+    style="background-image: url('/one-music-gh-pages/img/bg-img/breadcumb3.jpg');">
+    <div class="bradcumbContent">
+        <p>Yaklaşan Konserler ve Partiler</p>
+        <h2>Etkinlikler</h2>
+    </div>
+</section>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Events Area Start ##### -->
+<section class="events-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <!-- Single Event Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-event-area mb-30 wow fadeInUp" data-wow-delay="100ms" style="margin-bottom: 30px;">
+                        <div class="event-thumbnail">
+                            <img src="@item.ImageURL" alt="@item.Title"
+                                style="height: 300px; object-fit: cover; width: 100%;">
+                        </div>
+                        <div class="event-text" style="padding: 20px; background-color: #f5f9fa;">
+                            <h4>@item.Title</h4>
+                            <div class="event-meta-data">
+                                <a href="#" class="event-place"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    @item.Location</a>
+                                <br>
+                                <a href="#" class="event-date"><i class="fa fa-calendar" aria-hidden="true"></i>
+                                    @(((DateTime)item.Date).ToString("dd MMMM yyyy HH:mm"))</a>
+                            </div>
+                            <a href="#" class="btn oneMusic-btn mt-30">Bilet Al</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<!-- ##### Events Area End ##### -->

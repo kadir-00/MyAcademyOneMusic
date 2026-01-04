@@ -2,13 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using OneMusic.EntityLayer.Entities;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace OneMusic.WebUI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminLayoutController : Controller
     {
-    
 
-        public async Task<IActionResult> Index()
+
+        public IActionResult Index()
         {
             return View();
         }

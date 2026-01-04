@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace OneMusic.WebUI.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminAlbumVerifyController : Controller
     {
         private readonly IAlbumService _albumService;

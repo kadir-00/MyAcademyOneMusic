@@ -5,7 +5,7 @@ using OneMusic.EntityLayer.Entities;
 
 namespace OneMusic.WebUI.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminAboutController : Controller
     {
         private readonly IAboutService _aboutService;

@@ -50,7 +50,24 @@ namespace OneMusic.DataAccessLayer.Concrete
 
         public Song GetRandomBestSong()
         {
-            return _context.Songs.Include(x => x.Album).ThenInclude(x => x.AppUser).OrderByDescending(x => Guid.NewGuid()).Take(1).FirstOrDefault();
+            return _context.Songs.Include(x => x.Album).ThenInclude(x => x.AppUser).OrderByDescending(x => Guid.NewGuid()).Take(1).FirstOrDefault()!;
+        }
+
+        public List<Song> GetLast6Songs()
+        {
+            using var context = new OneMusicContext();
+            return context.Songs.Include(x => x.Album).ThenInclude(y => y.AppUser).OrderByDescending(x => x.SongId).Take(6).ToList();
+        }
+
+        public List<Song> GetSongsOrderedByDate(int maxPerArtist, int totalCount)
+        {
+            using var context = new OneMusicContext();
+            var allSongs = context.Songs.Include(x => x.Album).ThenInclude(y => y.AppUser).OrderByDescending(x => x.SongId).ToList();
+            return allSongs.GroupBy(x => x.Album.AppUserId)
+                           .SelectMany(g => g.Take(maxPerArtist))
+                           .OrderByDescending(x => x.SongId)
+                           .Take(totalCount)
+                           .ToList();
         }
     }
 }

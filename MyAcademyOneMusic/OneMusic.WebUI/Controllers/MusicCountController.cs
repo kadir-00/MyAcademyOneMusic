@@ -18,7 +18,17 @@ namespace OneMusic.WebUI.Controllers
 
         public async Task<JsonResult> Index(int id)
         {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var username = User.Identity?.Name;
+            if (username == null)
+            {
+                return Json(id);
+            }
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user == null)
+            {
+                return Json(id);
+            }
             bool result = _songsListenDetailsService.TIsActive(user.Id, id);
             if (result)
             {

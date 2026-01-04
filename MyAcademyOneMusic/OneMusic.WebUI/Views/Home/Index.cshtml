@@ -1,6 +1,113 @@
-﻿@{
+﻿@model OneMusic.WebUI.Models.HomeViewModel
+@{
     ViewData["Title"] = "Anasayfa";
 }
+
+<style>
+    /* Uniform Album Cards for 'Yeni Ürünler' */
+    .single-album-area {
+        height: 100%;
+        margin-bottom: 30px;
+        transition: transform 0.3s;
+    }
+
+    .single-album-area:hover {
+        transform: translateY(-5px);
+    }
+
+    .single-album-area .album-thumb {
+        height: 250px;
+        /* Fixed height for container */
+        width: 100%;
+        overflow: hidden;
+        border-radius: 6px;
+        background-color: #f0f0f0;
+        /* Fallback color */
+    }
+
+    .single-album-area .album-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Ensure image covers the area without distortion */
+    }
+
+    .single-album-area .album-info {
+        padding-top: 15px;
+    }
+
+    .single-album-area .album-info h5 {
+        font-size: 16px;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* Truncate long text */
+    }
+
+    /* Layout for Weeks Top & New Hits */
+    .single-top-item,
+    .single-new-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .single-top-item .thumbnail,
+    .single-new-item .thumbnail {
+        flex: 0 0 70px;
+        /* Fixed width */
+        height: 70px;
+        width: 70px;
+        margin-right: 15px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .single-top-item .thumbnail img,
+    .single-new-item .thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .single-top-item .content-,
+    .single-new-item .content- {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        /* For text truncation */
+    }
+
+    .single-top-item .content- h6,
+    .single-new-item .content- h6 {
+        margin-bottom: 5px;
+        font-size: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Popular Artists */
+    .popular-artists-area .single-artist-item {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .popular-artists-area .single-artist-item img {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
 
 <!-- ##### Hero Area Start ##### -->
 <section class="hero-area">
@@ -73,60 +180,26 @@
         <div class="row">
             <div class="col-12">
                 <div class="albums-slideshow owl-carousel">
-                    <!-- Single Album -->
-                    <div class="single-album">
-                        <img src="~/one-music-gh-pages/img/bg-img/a1.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Hayko Cepkin</h5>
-                            </a>
-                            <p>Sandık</p>
-                        </div>
-                    </div>
+                    @foreach (var item in Model.LatestAlbums)
 
-                    <!-- Single Album -->
-                    <div class="single-album">
-                        <img src="~/one-music-gh-pages/img/bg-img/a2.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Sezen Aksu</h5>
-                            </a>
-                            <p>Biraz Pop Biraz Sezen</p>
-                        </div>
-                    </div>
 
-                    <!-- Single Album -->
-                    <div class="single-album">
-                        <img src="~/one-music-gh-pages/img/bg-img/a3.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>No.1</h5>
-                            </a>
-                            <p>Siyah Bayrak</p>
-                        </div>
-                    </div>
 
-                    <!-- Single Album -->
-                    <div class="single-album">
-                        <img src="~/one-music-gh-pages/img/bg-img/a4.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Duman</h5>
-                            </a>
-                            <p>Seni Kendime Sakladım</p>
-                        </div>
-                    </div>
 
-                    <!-- Single Album -->
-                    <div class="single-album">
-                        <img src="~/one-music-gh-pages/img/bg-img/a5.jpg" alt="">
-                        <div class="album-info">
-                            <a href="#">
-                                <h5>Manga</h5>
-                            </a>
-                            <p>Şehr-i Hüzün</p>
+
+
+
+                    {
+                        <!-- Single Album -->
+                        <div class="single-album">
+                            <img src="@item.CoverImage" alt="" style="height: 250px; object-fit: cover; width: 100%;">
+                            <div class="album-info">
+                                <a href="/Albums/Details/@item.AlbumId">
+                                    <h5>@(item.AppUser?.Name ?? "Sanatçı")</h5>
+                                </a>
+                                <p>@item.AlbumName</p>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
@@ -148,107 +221,31 @@
 
         <div class="row">
 
-            <!-- Single Album Area -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
-                    <div class="album-thumb">
-                        <img src="~/one-music-gh-pages/img/bg-img/b1.jpg" alt="">
-                        <div class="album-price">
-                            <p>$10.99</p>
+            @foreach (var item in Model.BuyNowAlbums)
+            {
+                <!-- Single Album Area -->
+                <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
+                        <div class="album-thumb">
+                            <img src="@item.CoverImage" alt="">
+                            <div class="album-price">
+                                <p>@item.Price.ToString("N0") ₺</p>
+                            </div>
+                            <!-- Play Icon Removed for cleaner look, or optional -->
+                            <div class="play-icon">
+                                <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
+                            </div>
                         </div>
-                        <div class="play-icon">
-                            <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
-                        </div>
-                    </div>
-                    <div class="album-info">
-                        <a href="#">
-                            <h5>Rock Band</h5>
-                        </a>
-                        <p>Live Sessions</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Album Area -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="single-album-area wow fadeInUp" data-wow-delay="200ms">
-                    <div class="album-thumb">
-                        <img src="~/one-music-gh-pages/img/bg-img/b2.jpg" alt="">
-                    </div>
-                    <div class="album-info">
-                        <a href="#">
-                            <h5>Jazz Club</h5>
-                        </a>
-                        <p>Smooth Jazz</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Album Area -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="single-album-area wow fadeInUp" data-wow-delay="300ms">
-                    <div class="album-thumb">
-                        <img src="~/one-music-gh-pages/img/bg-img/b3.jpg" alt="">
-                    </div>
-                    <div class="album-info">
-                        <a href="#">
-                            <h5>Pop Hits</h5>
-                        </a>
-                        <p>2024 Best</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Album Area -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="single-album-area wow fadeInUp" data-wow-delay="400ms">
-                    <div class="album-thumb">
-                        <img src="~/one-music-gh-pages/img/bg-img/b4.jpg" alt="">
-                    </div>
-                    <div class="album-info">
-                        <a href="#">
-                            <h5>Classical</h5>
-                        </a>
-                        <p>Mozart & Bach</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Album Area -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="single-album-area wow fadeInUp" data-wow-delay="500ms">
-                    <div class="album-thumb">
-                        <img src="~/one-music-gh-pages/img/bg-img/b1.jpg" alt="">
-                        <div class="album-price">
-                            <p>$12.99</p>
-                        </div>
-                        <div class="play-icon">
-                            <a href="#" class="video--play--btn"><span class="icon-play-button"></span></a>
+                        <div class="album-info">
+                            <a href="/Albums/Details/@item.AlbumId">
+                                <h5 title="@(item.AppUser?.Name ?? "Sanatçı") @(item.AppUser?.Surname ?? "")">
+                                    @(item.AppUser?.Name ?? "Sanatçı") @(item.AppUser?.Surname ?? "")</h5>
+                            </a>
+                            <p>@item.AlbumName</p>
                         </div>
                     </div>
-                    <div class="album-info">
-                        <a href="#">
-                            <h5>Heavy Metal</h5>
-                        </a>
-                        <p>Iron Maiden</p>
-                    </div>
                 </div>
-            </div>
-
-            <!-- Single Album Area -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                <div class="single-album-area wow fadeInUp" data-wow-delay="600ms">
-                    <div class="album-thumb">
-                        <img src="~/one-music-gh-pages/img/bg-img/b2.jpg" alt="">
-                    </div>
-                    <div class="album-info">
-                        <a href="#">
-                            <h5>Indie Pop</h5>
-                        </a>
-                        <p>Independent</p>
-                    </div>
-                </div>
-            </div>
+            }
 
         </div>
 
@@ -270,7 +267,8 @@
         <div class="row align-items-end">
             <div class="col-12 col-md-5 col-lg-4">
                 <div class="featured-artist-thumb">
-                    <img src="~/one-music-gh-pages/img/bg-img/fa.jpg" alt="">
+                    <img src="@(Model.FeaturedAlbum?.CoverImage ?? "~/one-music-gh-pages/img/bg-img/fa.jpg")" alt=""
+                        style="height: 350px; object-fit: cover; width:100%">
                 </div>
             </div>
             <div class="col-12 col-md-7 col-lg-8">
@@ -278,13 +276,15 @@
                     <!-- Section Heading -->
                     <div class="section-heading white text-left mb-30">
                         <p>Haftanın Konuğu</p>
-                        <h2>Sahnelerin Yıldızı</h2>
+                        <h2>@(Model.FeaturedAlbum?.AppUser?.Name ?? "Sahnelerin")
+                            @(Model.FeaturedAlbum?.AppUser?.Surname ?? "Yıldızı")</h2>
                     </div>
-                    <p>Müzik dünyasının en sevilen isimlerinden biri bu hafta konuğumuz. Yeni çalışmaları, konser
-                        takvimi ve özel röportajlarıyla sizlerle. Müziğin ritmini hissetmek için doğru adrestesiniz.</p>
+                    <p>Müzik dünyasının en sevilen isimlerinden biri bu hafta konuğumuz.
+                        @(Model.FeaturedAlbum?.AlbumName) albümü ile listeleri alt üst eden sanatçımız, yeni
+                        çalışmaları ve konser takvimiyle sizlerle.</p>
                     <div class="song-play-area">
                         <div class="song-name">
-                            <p>01. Haftanın Hiti</p>
+                            <p>01. @(Model.FeaturedAlbum?.AlbumName ?? "Haftanın Hiti")</p>
                         </div>
                         <audio preload="auto" controls>
                             <source src="~/one-music-gh-pages/audio/dummy-audio.mp3">
@@ -309,38 +309,22 @@
                         <h2>Haftanın En İyileri</h2>
                     </div>
 
-                    <!-- Single Top Item -->
-                    <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
-                        <div class="thumbnail">
-                            <img src="~/one-music-gh-pages/img/bg-img/wt1.jpg" alt="">
-                        </div>
-                        <div class="content-">
-                            <h6>Sam Smith</h6>
-                            <p>Underground</p>
-                        </div>
-                    </div>
+                    @foreach (var item in Model.WeeksTopAlbums)
 
-                    <!-- Single Top Item -->
-                    <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="150ms">
-                        <div class="thumbnail">
-                            <img src="~/one-music-gh-pages/img/bg-img/wt2.jpg" alt="">
-                        </div>
-                        <div class="content-">
-                            <h6>Power Play</h6>
-                            <p>In my mind</p>
-                        </div>
-                    </div>
 
-                    <!-- Single Top Item -->
-                    <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="200ms">
-                        <div class="thumbnail">
-                            <img src="~/one-music-gh-pages/img/bg-img/wt3.jpg" alt="">
+
+                    {
+                        <!-- Single Top Item -->
+                        <div class="single-top-item d-flex wow fadeInUp" data-wow-delay="100ms">
+                            <div class="thumbnail">
+                                <img src="@item.CoverImage" alt="">
+                            </div>
+                            <div class="content-">
+                                <h6>@item.AppUser?.Name @item.AppUser?.Surname</h6>
+                                <p>@item.AlbumName</p>
+                            </div>
                         </div>
-                        <div class="content-">
-                            <h6>Cristinne Smith</h6>
-                            <p>My Music</p>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
 
@@ -352,56 +336,29 @@
                         <h2>Yeni Hit Şarkılar</h2>
                     </div>
 
-                    <!-- Single Top Item -->
-                    <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
-                        data-wow-delay="100ms">
-                        <div class="first-part d-flex align-items-center">
-                            <div class="thumbnail">
-                                <img src="~/one-music-gh-pages/img/bg-img/wt7.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Sam Smith</h6>
-                                <p>Underground</p>
-                            </div>
-                        </div>
-                        <audio preload="auto" controls>
-                            <source src="~/one-music-gh-pages/audio/dummy-audio.mp3">
-                        </audio>
-                    </div>
+                    @foreach (var item in Model.NewHitSongs)
 
-                    <!-- Single Top Item -->
-                    <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
-                        data-wow-delay="150ms">
-                        <div class="first-part d-flex align-items-center">
-                            <div class="thumbnail">
-                                <img src="~/one-music-gh-pages/img/bg-img/wt8.jpg" alt="">
-                            </div>
-                            <div class="content-">
-                                <h6>Power Play</h6>
-                                <p>In my mind</p>
-                            </div>
-                        </div>
-                        <audio preload="auto" controls>
-                            <source src="~/one-music-gh-pages/audio/dummy-audio.mp3">
-                        </audio>
-                    </div>
 
-                    <!-- Single Top Item -->
-                    <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
-                        data-wow-delay="200ms">
-                        <div class="first-part d-flex align-items-center">
-                            <div class="thumbnail">
-                                <img src="~/one-music-gh-pages/img/bg-img/wt9.jpg" alt="">
+
+                    {
+                        <!-- Single Top Item -->
+                        <div class="single-new-item d-flex align-items-center justify-content-between wow fadeInUp"
+                            data-wow-delay="100ms">
+                            <div class="first-part d-flex align-items-center" style="flex: 1; min-width: 0;">
+                                <div class="thumbnail">
+                                    <img src="@item.Album?.CoverImage" alt="">
+                                </div>
+                                <div class="content-">
+                                    <h6 title="@item.SongName">@item.SongName</h6>
+                                    <p>@item.Album?.AppUser?.Name @item.Album?.AppUser?.Surname</p>
+                                </div>
                             </div>
-                            <div class="content-">
-                                <h6>Cristinne Smith</h6>
-                                <p>My Music</p>
-                            </div>
+                            <audio preload="auto" controls
+                                style="width: 80px; height: 30px; border-radius:15px; margin-left:10px;">
+                                <source src="@item.SongUrl">
+                            </audio>
                         </div>
-                        <audio preload="auto" controls>
-                            <source src="~/one-music-gh-pages/audio/dummy-audio.mp3">
-                        </audio>
-                    </div>
+                    }
                 </div>
             </div>
 
@@ -413,43 +370,16 @@
                         <h2>Popüler Sanatçılar</h2>
                     </div>
 
-                    <!-- Single Artist -->
-                    <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="100ms">
-                        <div class="thumbnail">
-                            <img src="~/one-music-gh-pages/img/bg-img/pa1.jpg" alt="">
-                        </div>
-                        <div class="content-">
-                            <p>Sam Smith</p>
-                        </div>
-                    </div>
+                    <div class="row">
+                        @foreach (var item in Model.PopularArtists)
 
-                    <!-- Single Artist -->
-                    <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="150ms">
-                        <div class="thumbnail">
-                            <img src="~/one-music-gh-pages/img/bg-img/pa2.jpg" alt="">
-                        </div>
-                        <div class="content-">
-                            <p>William Parker</p>
-                        </div>
-                    </div>
-
-                    <!-- Single Artist -->
-                    <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="200ms">
-                        <div class="thumbnail">
-                            <img src="~/one-music-gh-pages/img/bg-img/pa3.jpg" alt="">
-                        </div>
-                        <div class="content-">
-                            <p>Jessica Walsh</p>
-                        </div>
-                    </div>
-                    <!-- Single Artist -->
-                    <div class="single-artists d-flex align-items-center wow fadeInUp" data-wow-delay="250ms">
-                        <div class="thumbnail">
-                            <img src="~/one-music-gh-pages/img/bg-img/pa4.jpg" alt="">
-                        </div>
-                        <div class="content-">
-                            <p>Tha Stoves</p>
-                        </div>
+                        {
+                            <!-- Single Artist -->
+                            <div class="col-6 col-md-6 single-artist-item wow fadeInUp" data-wow-delay="100ms">
+                                <img src="@(item.ImageURL ?? "/one-music-gh-pages/img/bg-img/a1.jpg")" alt="">
+                                <h5>@item.Name @item.Surname</h5>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -457,56 +387,3 @@
     </div>
 </section>
 <!-- ##### Miscellaneous Area End ##### -->
-
-<!-- ##### Contact Area Start ##### -->
-<section class="contact-area section-padding-100 bg-img bg-overlay bg-fixed has-bg-img"
-    style="background-image: url('/one-music-gh-pages/img/bg-img/bg-2.jpg');">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-heading white wow fadeInUp" data-wow-delay="100ms">
-                    <p>İletişime Geç</p>
-                    <h2>Bize Ulaşın</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <!-- Contact Form Area -->
-                <div class="contact-form-area">
-                    <form action="#" method="post">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group wow fadeInUp" data-wow-delay="100ms">
-                                    <input type="text" class="form-control" id="name" placeholder="Adınız">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group wow fadeInUp" data-wow-delay="200ms">
-                                    <input type="email" class="form-control" id="email" placeholder="E-posta">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group wow fadeInUp" data-wow-delay="300ms">
-                                    <input type="text" class="form-control" id="subject" placeholder="Konu">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group wow fadeInUp" data-wow-delay="400ms">
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="10"
-                                        placeholder="Mesajınız"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center wow fadeInUp" data-wow-delay="500ms">
-                                <button class="btn oneMusic-btn mt-30" type="submit">Gönder <i
-                                        class="fa fa-angle-double-right"></i></button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ##### Contact Area End ##### -->

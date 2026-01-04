@@ -20,7 +20,7 @@ namespace OneMusic.DataAccessLayer.Repositories
 
         public void Create(T entity)
         {
-           _context.Add(entity);
+            _context.Add(entity);
             _context.SaveChanges();
         }
 
@@ -36,14 +36,14 @@ namespace OneMusic.DataAccessLayer.Repositories
             return _context.Set<T>().Find(id);
         }
 
-        public List<T> GetList()
+        public virtual List<T> GetList()
         {
             return _context.Set<T>().AsNoTracking().ToList();
         }
 
         public void Update(T entity)
         {
-           _context.Update(entity);
+            _context.Update(entity);
             _context.SaveChanges();
         }
     }

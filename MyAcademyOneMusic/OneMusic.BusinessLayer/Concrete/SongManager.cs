@@ -72,5 +72,15 @@ namespace OneMusic.BusinessLayer.Concrete
         {
             _songDal.Update(entity);
         }
+
+        public List<Song> TGetLast6Songs()
+        {
+            return _songDal.GetLast6Songs();
+        }
+
+        public List<Song> TGetSongsOrderedByDate(int maxPerArtist, int totalCount)
+        {
+            return _songDal.GetSongsOrderedByDate(maxPerArtist, totalCount);
+        }
     }
 }

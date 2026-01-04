@@ -26,7 +26,7 @@ namespace OneMusic.DataAccessLayer.Concrete
 
         public string ExpensiveAlbumName(int id)
         {
-            return _context.Albums.OrderByDescending(x => x.Price).Where(x => x.IsVerify == true && x.AppUserId == id).Select(y => y.AlbumName).FirstOrDefault();
+            return _context.Albums.OrderByDescending(x => x.Price).Where(x => x.IsVerify == true && x.AppUserId == id).Select(y => y.AlbumName).FirstOrDefault() ?? "";
         }
 
         public List<Album> getAlbumByArtist(int id)
@@ -62,7 +62,7 @@ namespace OneMusic.DataAccessLayer.Concrete
 
         public Album getAlbumByIDWithAppUser(int id)
         {
-            return _context.Albums.Include(x => x.AppUser).FirstOrDefault(x => x.IsVerify == true && x.AlbumId == id);
+            return _context.Albums.Include(x => x.AppUser).FirstOrDefault(x => x.IsVerify == true && x.AlbumId == id)!;
         }
 
         public List<Album> getListAlbumWithCategoryAndArtist(string category, string artist)
@@ -81,5 +81,30 @@ namespace OneMusic.DataAccessLayer.Concrete
         }
 
 
+        public override List<Album> GetList()
+        {
+            return _context.Albums.Include(x => x.AppUser).Where(x => x.IsVerify == true).ToList();
+        }
+        public Album GetAlbumByIdWithSongs(int id)
+        {
+            return _context.Albums.Include(x => x.AppUser).Include(x => x.Songs).Where(x => x.AlbumId == id).FirstOrDefault();
+        }
+
+        public List<Album> GetLast6Albums()
+        {
+            using var context = new OneMusicContext();
+            return context.Albums.Where(x => x.IsVerify == true).Include(x => x.AppUser).OrderByDescending(x => x.AlbumId).Take(6).ToList();
+        }
+
+        public List<Album> GetAlbumsOrderedByDate(int maxPerArtist, int totalCount)
+        {
+            using var context = new OneMusicContext();
+            var allAlbums = context.Albums.Include(x => x.AppUser).Where(x => x.IsVerify == true).OrderByDescending(x => x.AlbumId).ToList();
+            return allAlbums.GroupBy(x => x.AppUserId)
+                            .SelectMany(g => g.Take(maxPerArtist))
+                            .OrderByDescending(x => x.AlbumId)
+                            .Take(totalCount)
+                            .ToList();
+        }
     }
 }

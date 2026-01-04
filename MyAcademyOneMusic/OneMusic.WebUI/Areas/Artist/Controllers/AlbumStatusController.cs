@@ -7,7 +7,7 @@ using OneMusic.EntityLayer.Entities;
 namespace OneMusic.WebUI.Areas.Artist.Controllers
 {
     [Area("Artist")]
-    //[Authorize(Roles = "Artist")]
+    [Authorize(Roles = "Artist")]
     [Route("[area]/[controller]/[action]/{id?}")]
     public class AlbumStatusController : Controller
     {

@@ -108,5 +108,20 @@ namespace OneMusic.BusinessLayer.Concrete
         {
             _albumDal.Update(entity);
         }
+
+        public Album TGetAlbumByIdWithSongs(int id)
+        {
+            return _albumDal.GetAlbumByIdWithSongs(id);
+        }
+
+        public List<Album> TGetLast6Albums()
+        {
+            return _albumDal.GetLast6Albums();
+        }
+
+        public List<Album> TGetAlbumsOrderedByDate(int maxPerArtist, int totalCount)
+        {
+            return _albumDal.GetAlbumsOrderedByDate(maxPerArtist, totalCount);
+        }
     }
 }

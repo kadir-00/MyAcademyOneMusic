@@ -18,6 +18,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(opts =>
 {
     opts.User.RequireUniqueEmail = true;
     opts.User.AllowedUserNameCharacters = "abcçdefghiıjklmnoöpqrsştuüvwxyzABCÇDEFGHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789._";
+    opts.SignIn.RequireConfirmedEmail = false;
 }).AddEntityFrameworkStores<OneMusicContext>().AddErrorDescriber<CustomErrorDescriber>().AddDefaultTokenProviders();
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(opts => { opts.TokenLifespan = TimeSpan.FromSeconds(60); });

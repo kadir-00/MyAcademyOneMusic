@@ -30,6 +30,7 @@ namespace OneMusic.WebUI.Controllers
                 UserName = model.UserName,
                 Name = model.Name,
                 Surname = model.Surname,
+                EmailConfirmed = true,
             };
             var result = await _userManager.CreateAsync(NewUser, model.Password);
             if (model.Password == model.ConfirmPassword)

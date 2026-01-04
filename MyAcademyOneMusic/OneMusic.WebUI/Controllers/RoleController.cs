@@ -6,7 +6,7 @@ using OneMusic.EntityLayer.Entities;
 
 namespace OneMusic.WebUI.Controllers
 {
-    // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;

@@ -1,0 +1,86 @@
+@model OneMusic.EntityLayer.Entities.Album
+@{
+    ViewData["Title"] = "Albüm Detayları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ##### Breadcumb Area Start ##### -->
+<section class="breadcumb-area bg-img bg-overlay"
+    style="background-image: url('/one-music-gh-pages/img/bg-img/breadcumb3.jpg');">
+    <div class="bradcumbContent">
+        <p>Albüm Detayları</p>
+        <h2>@Model.AlbumName</h2>
+    </div>
+</section>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Album Details Area Start ##### -->
+<section class="album-catagory section-padding-100-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div class="single-song-area mb-100 d-flex flex-wrap align-items-end">
+                    <div class="song-thumbnail">
+                        <img src="@Model.CoverImage" alt="">
+                    </div>
+                    <div class="song-play-area">
+                        <div class="song-name">
+                            <p>@Model.AppUser?.Name @Model.AppUser?.Surname</p>
+                        </div>
+                        <br />
+                        <h2>@Model.AlbumName</h2>
+                        <br />
+                        <h4 style="color:white">Fiyat: @Model.Price.ToString("N2") ₺</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Album Details Area End ##### -->
+
+
+<!-- ##### Song Area Start ##### -->
+<div class="one-music-songs-area mb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading style-2">
+                    <p>Şarkı Listesi</p>
+                    <h2>Albümdeki Şarkılar</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                @if (Model.Songs != null && Model.Songs.Count > 0)
+                {
+                    <div class="songs-area">
+                        @foreach (var song in Model.Songs)
+                        {
+                            <!-- Single Song Area -->
+                            <div class="single-song-area mb-30 d-flex flex-wrap align-items-end">
+                                <div class="song-play-area">
+                                    <div class="song-name">
+                                        <p>@song.SongName</p>
+                                    </div>
+                                    <audio preload="auto" controls>
+                                        <source src="@song.SongUrl">
+                                    </audio>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        Bu albümde henüz şarkı bulunmamaktadır.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Song Area End ##### -->

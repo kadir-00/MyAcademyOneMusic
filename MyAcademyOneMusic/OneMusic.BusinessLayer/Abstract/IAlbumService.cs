@@ -28,6 +28,8 @@ namespace OneMusic.BusinessLayer.Abstract
 
         List<Album> TgetListAlbumWithArtist(string artist);
 
-
+        Album TGetAlbumByIdWithSongs(int id);
+        List<Album> TGetLast6Albums();
+        List<Album> TGetAlbumsOrderedByDate(int maxPerArtist, int totalCount);
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OneMusic.DataAccessLayer.Abstract
 {
-    public interface IAlbumDal:IGenericDal<Album>
+    public interface IAlbumDal : IGenericDal<Album>
     {
         List<Album> getAlbumByArtist(int id);
 
@@ -16,7 +16,7 @@ namespace OneMusic.DataAccessLayer.Abstract
         List<Album> getAlbumWithArtistRejectLists();
         List<Album> getListAwatingApprovalAlbums(int id);
 
-        List<Album> getListAlbumWithCategoryAndArtist(string category,string artist);
+        List<Album> getListAlbumWithCategoryAndArtist(string category, string artist);
 
         List<Album> getListAlbumWithCategory(string category);
 
@@ -33,5 +33,8 @@ namespace OneMusic.DataAccessLayer.Abstract
         int AlbumCountByWaiting(int id);
         string ExpensiveAlbumName(int id);
 
+        Album GetAlbumByIdWithSongs(int id);
+        List<Album> GetLast6Albums();
+        List<Album> GetAlbumsOrderedByDate(int maxPerArtist, int totalCount);
     }
 }

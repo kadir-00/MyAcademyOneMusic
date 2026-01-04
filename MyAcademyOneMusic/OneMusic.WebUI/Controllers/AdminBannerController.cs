@@ -8,7 +8,7 @@ using OneMusic.WebUI.ImageSettings;
 
 namespace OneMusic.WebUI.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminBannerController : Controller
     {
         private readonly IBannerService _bannerService;
@@ -114,7 +114,7 @@ namespace OneMusic.WebUI.Controllers
             ImageSetting.DeleteImage(value.ImageUrl);
             _bannerService.TDelete(id);
 
-           
+
             TempData["Result"] = "Kayıt Silindi";
             TempData["icon"] = "success";
             return RedirectToAction("Index");

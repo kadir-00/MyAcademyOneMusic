@@ -11,7 +11,7 @@ using OneMusic.WebUI.ImageSettings;
 namespace OneMusic.WebUI.Areas.Artist.Controllers
 {
     [Area("Artist")]
-    //[Authorize(Roles = "Artist")]
+    [Authorize(Roles = "Artist")]
     [Route("[area]/[controller]/[action]/{id?}")]
     public class MyAlbumController : Controller
     {
@@ -28,10 +28,12 @@ namespace OneMusic.WebUI.Areas.Artist.Controllers
 
         public async Task<IActionResult> Index()
         {
-            AppUser user = null;
-            if (User.Identity?.Name != null)
+            var userName = User.Identity?.Name;
+            AppUser? user = null;
+
+            if (!string.IsNullOrEmpty(userName))
             {
-                user = await _userManager.FindByNameAsync(User.Identity.Name);
+                user = await _userManager.FindByNameAsync(userName);
             }
 
             if (user == null)
@@ -51,10 +53,12 @@ namespace OneMusic.WebUI.Areas.Artist.Controllers
 
         async Task<List<SelectListItem>> loadDropdown()
         {
-            AppUser user = null;
-            if (User.Identity?.Name != null)
+            var userName = User.Identity?.Name;
+            AppUser? user = null;
+
+            if (!string.IsNullOrEmpty(userName))
             {
-                user = await _userManager.FindByNameAsync(User.Identity.Name);
+                user = await _userManager.FindByNameAsync(userName);
             }
 
             if (user == null)
@@ -99,10 +103,11 @@ namespace OneMusic.WebUI.Areas.Artist.Controllers
         {
             ModelState.Clear();
 
-            AppUser user = null;
-            if (User.Identity?.Name != null)
+            var userName = User.Identity?.Name;
+            AppUser? user = null;
+            if (!string.IsNullOrEmpty(userName))
             {
-                user = await _userManager.FindByNameAsync(User.Identity.Name);
+                user = await _userManager.FindByNameAsync(userName);
             }
 
             if (user == null)
@@ -176,13 +181,16 @@ namespace OneMusic.WebUI.Areas.Artist.Controllers
         {
             var value = _albumService.TGetById(album.AlbumId);
 
-            value.AlbumName = album.AlbumName;
+            value.AlbumName = album.AlbumName ?? value.AlbumName; // Keep old name if null, or empty. Better to keep old? Or just empty. Viewmodel binding usually sends null if empty? No, required was warning before.
+            // If I made ViewModel nullable, I should check if it's null.
+            if (album.AlbumName != null) value.AlbumName = album.AlbumName;
+
             value.Price = album.Price;
 
             if (album.Image != null)
             {
                 var result = ImageSetting.CreateImage(album.Image, "Albums");
-                value.CoverImage = result;
+                value.CoverImage = result ?? value.CoverImage;
             }
 
 

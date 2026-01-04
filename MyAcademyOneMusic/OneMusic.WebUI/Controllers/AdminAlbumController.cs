@@ -13,7 +13,7 @@ using X.PagedList;
 
 namespace OneMusic.WebUI.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
 
     public class AdminAlbumController : Controller
     {
@@ -25,7 +25,7 @@ namespace OneMusic.WebUI.Controllers
 
         public IActionResult Index(int pageNumber = 1)
         {
-            var values = _albumService.TgetAlbumListWithArtist().ToPagedList(pageNumber,5);
+            var values = _albumService.TgetAlbumListWithArtist().ToPagedList(pageNumber, 5);
             return View(values);
         }
         public IActionResult DeleteAlbum(int id)
