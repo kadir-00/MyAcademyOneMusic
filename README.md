@@ -27,7 +27,7 @@ Sanatçılar için özelleştirilmiş yönetim arayüzüdür.
 * **İçerik Yönetimi:** Kendi albümlerini oluşturabilir, albüm kapaklarını ve müzik dosyalarını (.mp3 vb.) sisteme yükleyebilirler.
 
 <p align="center">
-  <img src="screenshots/santci.png" alt="Sanatçı Paneli" width="80%">
+  <img src="screenshots/sanatci.png" alt="Sanatçı Paneli" width="80%">
 </p>
 
 ### 2. 🎧 Kullanıcı (Dinleyici) Arayüzü (UI)
@@ -80,6 +80,11 @@ Bu projede modern web geliştirme standartları ve .NET ekosisteminin güçlü a
 * ✅ **Rol Bazlı Erişim (RBAC):** Admin, Sanatçı ve Ziyaretçi rolleri için `[Authorize]` ile sayfa ve aksiyon bazlı kısıtlamalar.
 * ✅ **CRUD Operasyonları:** Tüm veri tipleri için Ekleme, Okuma, Güncelleme ve Silme yetenekleri.
 * ✅ **Profil Yönetimi:** Kullanıcıların kendi bilgilerini güncelleyebilmesi.
+
+---
+
+## 👏 Teşekkür
+Bu projenin geliştirilmesindeki katkıları ve rehberliği için **Erhan Gündüz** hocama ve **Murat Yücedağ** hocama teşekkür ederim.
 
 ---
 
