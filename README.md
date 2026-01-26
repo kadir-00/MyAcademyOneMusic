@@ -27,7 +27,7 @@ Sanatçılar için özelleştirilmiş yönetim arayüzüdür.
 * **İçerik Yönetimi:** Kendi albümlerini oluşturabilir, albüm kapaklarını ve müzik dosyalarını (.mp3 vb.) sisteme yükleyebilirler.
 
 <p align="center">
-  <img src="screenshots/artist-panel.png" alt="Sanatçı Paneli" width="80%">
+  <img src="screenshots/santci.png" alt="Sanatçı Paneli" width="80%">
 </p>
 
 ### 2. 🎧 Kullanıcı (Dinleyici) Arayüzü (UI)
@@ -36,7 +36,7 @@ Müzikseverlerin etkileşime girdiği ön yüzdür.
 * **Deneyim:** Kullanıcılar albüm detaylarına girip şarkıları doğrudan tarayıcı üzerinden dinleyebilir.
 
 <p align="center">
-  <img src="screenshots/music-player.png" alt="Müzik Çalar Arayüzü" width="80%">
+  <img src="screenshots/anasayfa4.png" alt="Müzik Çalar Arayüzü" width="80%">
 </p>
 
 ### 3. 🛡️ Admin Paneli
@@ -44,6 +44,9 @@ Platformun genel yönetim merkezidir.
 * **Tam Kontrol:** Site üzerindeki tüm içerikleri (Albüm, Şarkı, Kategori) düzenleme ve silme yetkisi.
 * **Kullanıcı Yönetimi:** Rol atamaları (Sanatçı/Üye) ve kullanıcı işlemleri buradan yürütülür.
 
+<p align="center">
+  <img src="screenshots/admin1.png" alt="Admin Arayüzü" width="80%">
+</p>
 ---
 
 ## 🏗️ Mimari ve Katmanlar
@@ -80,12 +83,32 @@ Bu projede modern web geliştirme standartları ve .NET ekosisteminin güçlü a
 
 ---
 
-## ⚙️ Kurulum
+## 📸 Proje Arayüzleri
 
-Projeyi yerel makinenizde çalıştırmak için:
+### 1. 🏠 Ana Sayfa (Vitrin)
 
-1. Projeyi klonlayın.
-2. `appsettings.json` dosyasındaki Connection String'i kendi SQL sunucunuza göre düzenleyin.
-3. **Package Manager Console** üzerinden migration işlemlerini uygulayın:
-   ```powershell
-   Update-Database
+
+![Ana Sayfa Görünümü](screenshots/anasayfa.png)
+
+![Ana Sayfa Görünümü](screenshots/anasayfa2.png)
+
+![Ana Sayfa Görünümü](screenshots/anasayfa3.png)
+
+![Ana Sayfa Görünümü](screenshots/anasayfa4.png)
+
+![Ana Sayfa Görünümü](screenshots/albumler.png)
+
+### 2. 🛠️ Admin Paneli
+Sitenin tüm yönetiminin yapıldığı, detaylı yetkilere sahip yönetim merkezi.
+
+![Admin Paneli Görünümü](screenshots/admin1.png)
+
+![Admin Paneli Görünümü](screenshots/admin2.png)
+
+### 3. ✍️ Sanatci Paneli 
+
+![Sanatci Paneli Görünümü](screenshots/sanatci.png)
+
+![Sanatci Paneli Görünümü](screenshots/sanatci2.png)
+
+![Sanatci Paneli Görünümü](screenshots/sanatci3.png)
